@@ -2,10 +2,10 @@ package application.models;
 
 public class Applicant {
 
-    public long id;
-    public String fullName;
-    public String email;
-    public String state;
+    private long id;
+    private String fullName;
+    private String email;
+    private String state;
 
     public Applicant() {
 

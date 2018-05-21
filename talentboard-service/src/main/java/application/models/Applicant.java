@@ -3,7 +3,7 @@ package application.models;
 public class Applicant {
 
     public long id;
-    public String full_name;
+    public String fullName;
     public String email;
     public String state;
 
@@ -19,12 +19,12 @@ public class Applicant {
         this.id = id;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

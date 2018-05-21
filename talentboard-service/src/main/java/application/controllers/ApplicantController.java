@@ -3,22 +3,31 @@ package application.controllers;
 import application.models.Applicant;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class ApplicantController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+    @GetMapping("/applicants")
+    public List<Applicant> getApplicants()  {
+        return new ArrayList<>();
+    }
 
-    @RequestMapping("/greeting")
-    public Applicant greeting(@RequestBody Applicant applicant)  {
+    @GetMapping("/applicant/{id}")
+    public Applicant getApplicant(@PathVariable String id) {
+        return new Applicant();
+    }
+
+    @PostMapping("/applicant")
+    public Applicant addApplicant(@RequestBody Applicant applicant) {
         return applicant;
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
+    @DeleteMapping("/applicant/{id}")
+    public Applicant deleteApplicant(@PathVariable String id) {
+        return new Applicant();
     }
 
 }

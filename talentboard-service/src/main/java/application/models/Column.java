@@ -15,9 +15,6 @@ public class Column {
     private String name;
 
     @DBRef
-    private Job job;
-
-    @DBRef
     private List<Applicant> applicants;
 
     public Column() {}
@@ -28,10 +25,6 @@ public class Column {
 
     public String getName() {
         return name;
-    }
-
-    public Job getJob() {
-        return job;
     }
 
     public List<Applicant> getApplicants() {

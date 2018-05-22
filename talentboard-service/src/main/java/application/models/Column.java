@@ -1,13 +1,24 @@
 package application.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
+@Document
 public class Column {
 
+    @Id
     private String id;
+
     private String name;
-    private String jobId;
-    private List<String> applicantIds;
+
+    @DBRef
+    private Job job;
+
+    @DBRef
+    private List<Applicant> applicants;
 
     public Column() {}
 
@@ -15,31 +26,15 @@ public class Column {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Job getJob() {
+        return job;
     }
 
-    public String getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
-
-    public List<String> getApplicantIds() {
-        return applicantIds;
-    }
-
-    public void setApplicantIds(List<String> applicantIds) {
-        this.applicantIds = applicantIds;
+    public List<Applicant> getApplicants() {
+        return applicants;
     }
 }

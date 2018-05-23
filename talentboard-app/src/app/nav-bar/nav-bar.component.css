@@ -12,9 +12,15 @@
 }
 
 .dark-blue-theme-color {
-    color: #283343;
+    /*color: #283343; */
+    color: #31393E;
 }
 
 .dark-blue-theme-color-bg {
-    background-color: #283343;
+    /*background-color: #283343;*/
+    background-color: #31393E;
+}
+
+.white {
+    color: white;
 }

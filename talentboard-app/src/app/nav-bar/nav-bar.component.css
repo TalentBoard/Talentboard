@@ -24,3 +24,16 @@
 .white {
     color: white;
 }
+
+.off-gray {
+    color: #B9BCBD;
+}
+
+.menu-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+
+div.menu-title:hover { 
+    color: white;
+}

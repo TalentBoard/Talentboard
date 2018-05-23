@@ -1,0 +1,20 @@
+.logo-talent {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #283343;
+}
+.logo-board {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #283343;
+}
+
+.dark-blue-theme-color {
+    color: #283343;
+}
+
+.dark-blue-theme-color-bg {
+    background-color: #283343;
+}

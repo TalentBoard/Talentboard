@@ -34,6 +34,7 @@
     font-size: 15px;
 }
 
-div.menu-title:hover { 
+a.item:hover i,
+a.item:hover div {
     color: white;
 }

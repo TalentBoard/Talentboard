@@ -1,0 +1,19 @@
+.job-view {
+
+}
+
+#job-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 44px;
+}
+
+.job-status-icon {
+  font-size: 15px;
+}
+
+.job-edit-icon {
+  font-size: 15px;
+}
+
+

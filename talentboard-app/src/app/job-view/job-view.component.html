@@ -1,13 +1,20 @@
-<div class="job-view">
+<div class="ui segment job-view">
+    <div class="job-title">
 
-  <div>
+        <i class="circle icon job-status-icon" style="color: green"></i>
 
-    <i class="circle icon job-status-icon" style="color: green"></i>
+        Software Engineer
 
-    Software Engineer
+        <i class="edit basic icon job-edit-icon"></i>
 
-    <i class="edit basic icon job-edit-icon"></i>
-
-  </div>
-
+        <div class="ui dropdown button job-dropdown right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+            <div class="text">Select Job</div>
+            <i class="dropdown icon"></i>
+            <div class="menu" suiDropdownMenu>
+                <div class="disabled item">Software Engineer</div>
+                <div class="item">iOS Engineer</div>
+                <div class="item">Design Lead</div>
+            </div>
+        </div>
+      </div>
 </div>

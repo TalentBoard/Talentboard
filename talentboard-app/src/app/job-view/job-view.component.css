@@ -1,19 +1,28 @@
 .job-view {
-
+  background-color: #F8F8F8;
 }
 
-#job-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 44px;
+.job-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  font-size: 24px;
 }
 
 .job-status-icon {
   font-size: 15px;
+  position:relative;
+  bottom:2px;
 }
 
 .job-edit-icon {
   font-size: 15px;
+  padding-left: 5px;
+}
+
+.job-dropdown {
+  position: relative;
+  bottom:10px;
 }
 
 

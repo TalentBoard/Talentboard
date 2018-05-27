@@ -7,7 +7,15 @@
 
         <i class="edit basic icon job-edit-icon"></i>
 
-        <div class="ui dropdown button job-dropdown right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+        <sui-dimmer class="page" [(isDimmed)]="pageDimmed">
+            <h2 class="ui inverted icon header">
+                <i class="heart icon"></i>
+                The page has been dimmed!
+            </h2>
+        </sui-dimmer>
+        <button class="ui button job-control-buttons right floated" (click)="pageDimmed = !pageDimmed"><i class="plus icon"></i>Add Job</button>
+
+        <div class="ui dropdown button job-control-buttons right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
             <div class="text">Select Job</div>
             <i class="dropdown icon"></i>
             <div class="menu" suiDropdownMenu>
@@ -16,5 +24,6 @@
                 <div class="item">Design Lead</div>
             </div>
         </div>
-      </div>
+     </div>
 </div>
+

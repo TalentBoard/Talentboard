@@ -6,13 +6,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {SuiModule} from 'ng2-semantic-ui';
 import { JobViewComponent } from './job-view/job-view.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
+import { CreateJobFormComponent } from './create-job-form/create-job-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     JobViewComponent,
-    KanbanBoardComponent
+    KanbanBoardComponent,
+    CreateJobFormComponent
   ],
   imports: [
     BrowserModule,

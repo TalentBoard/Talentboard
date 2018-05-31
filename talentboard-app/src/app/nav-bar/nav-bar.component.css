@@ -11,7 +11,7 @@
 }
 
 .light-theme-color-bg {
-    background-color: #F8F8F8;/*#F8F8F8;*/
+    background-color: #F8F8F8;
     border: #F8F8F8 !important; 
 }
 
@@ -47,7 +47,7 @@
 
 input[type="text"]
 {
-    width: 700px;
+    width: 1000px;
     background: transparent;
     background-position: 10px 10px; 
     border: none;
@@ -64,7 +64,7 @@ input[type="text"]
 }
 
 input[type=text]:focus {
-    width: 1000px;
+    width: 1200px;
     outline: none;
 }
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .icon-menu {
     background-color: #079EF0 !important;
     color: white;
@@ -17,31 +16,10 @@
 }
 
 .dark-blue-theme-color {
-=======
-.logo-talent {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    color: #283343;
-}
-.logo-board {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #283343;
-}
-
-.dark-blue-theme-color {
-    /*color: #283343; */
->>>>>>> master
     color: #31393E;
 }
 
 .dark-blue-theme-color-bg {
-<<<<<<< HEAD
-=======
-    /*background-color: #283343;*/
->>>>>>> master
     background-color: #31393E;
 }
 
@@ -58,7 +36,6 @@
     font-size: 15px;
 }
 
-<<<<<<< HEAD
 .icon {
     color: white;
 }
@@ -70,7 +47,7 @@
 
 input[type="text"]
 {
-    width: 1000px;
+    width: 800px;
     background: transparent;
     background-position: 10px 10px; 
     border: none;
@@ -87,13 +64,7 @@ input[type="text"]
 }
 
 input[type=text]:focus {
-    width: 1200px;
+    width: 1000px;
     outline: none;
 }
 
-=======
-a.item:hover i,
-a.item:hover div {
-    color: white;
-}
->>>>>>> master

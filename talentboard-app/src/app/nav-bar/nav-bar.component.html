@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
@@ -59,42 +58,5 @@
 
 
 
-=======
-<div class="ui top attached demo menu dark-blue-theme-color-bg">
-
-    <a class="item" >
-        <ng-template let-result let-query="query" #template>
-            {{ result.title }} ({{ result.index }})
-        </ng-template>
-        <sui-search [options]="options"
-                    optionsField="title"
-                    [resultTemplate]="template"
-                    [retainSelectedResult]="false"
-                    (resultSelected)="alert($event.title)">
-        </sui-search>
-    </a>
-
-    <a class="item">
-        <i class="suitcase icon off-gray"></i>
-        <div class="menu-title off-gray"> <b>Positions</b></div>
-    </a>
-
-    <a class="item">
-        <i class="users icon off-gray"></i>
-        <div class="menu-title off-gray"> <b>Candidates</b></div>
-    </a>
-
-    <a class="item right">
-      <img src="../../assets/images/logo-red.svg" height="23px">
-      <div class="logo-talent white"><b>talent</b></div>
-      <div class="logo-board white">board</div>
-    </a>
-
-
-</div>
-
-
-<app-job-view></app-job-view>
->>>>>>> master
 
 

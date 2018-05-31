@@ -1,13 +1,14 @@
+
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
         <a class="item">1</a>
         <a class="item">2</a>
     </sui-sidebar>
     <sui-sidebar-sibling [isDimmedWhenVisible]="true">
-        
-        
+
+
         <div class="ui borderless top attached demo menu light-theme-color-bg">
-            
+
             <a class="item icon-menu" (click)="sidebar.toggle()">
                 <i class="sidebar icon"></i>
             </a>
@@ -20,8 +21,8 @@
 
                 <a class="item">
                     <i class="bell icon icon-items"></i>
-                </a>    
-                
+                </a>
+
                 <div class="ui pointing dropdown link item" suiDropdown>
                     <span class="text">
                         <img class="ui avatar image" src="../../assets/images/User123.PNG"> &nbsp;User123
@@ -35,17 +36,17 @@
                 </div>
 
             </div>
-            
+
 
         </div>
 
         <app-job-view></app-job-view>
-     
+
     </sui-sidebar-sibling>
 </sui-sidebar-container>
 
 
-      
+
 
 
 

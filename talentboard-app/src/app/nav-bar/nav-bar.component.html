@@ -1,3 +1,65 @@
+<<<<<<< HEAD
+
+<sui-sidebar-container class="ui bottom attached segment">
+    <sui-sidebar class="inverted vertical" #sidebar>
+        <a class="item">1</a>
+        <a class="item">2</a>
+    </sui-sidebar>
+    <sui-sidebar-sibling [isDimmedWhenVisible]="true">
+
+
+        <div class="ui borderless top attached demo menu light-theme-color-bg">
+
+            <a class="item icon-menu" (click)="sidebar.toggle()">
+                <i class="sidebar icon"></i>
+            </a>
+
+            <a class="item">
+                <input type="text" name="search" placeholder="Search..">
+            </a>
+
+            <div class="right menu">
+
+                <a class="item">
+                    <i class="bell icon icon-items"></i>
+                </a>
+
+                <div class="ui simple dropdown link item" suiDropdown>
+                    <span class="text">
+                        <img class="ui avatar image" src="../../assets/images/User123.PNG"> &nbsp;User123
+                    </span>
+                    <i class="dropdown icon" style="color: black;"></i>
+                    <div class="menu" suiDropdownMenu>
+                        <h2 class="ui header">
+                            <img src="../../assets/images/User123.PNG" class="ui image">
+                            User123
+                        </h2>
+                           
+                        <div class="item">Account Settings</div>
+                        <div class="item" style="color: #e24f4f !important;">Sign out</div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <app-job-view></app-job-view>
+        <app-kanban-board></app-kanban-board>
+
+    </sui-sidebar-sibling>
+</sui-sidebar-container>
+
+
+
+
+
+
+
+
+=======
 <div class="ui top attached demo menu dark-blue-theme-color-bg">
 
     <a class="item" >
@@ -33,5 +95,6 @@
 
 
 <app-job-view></app-job-view>
+>>>>>>> master
 
 

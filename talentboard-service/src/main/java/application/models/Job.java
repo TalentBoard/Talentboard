@@ -6,7 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+<<<<<<< HEAD
+@Document
+=======
 @Document(collection = "Jobs")
+>>>>>>> master
 public class Job {
 
     @Id

@@ -7,7 +7,15 @@
 
         <i class="edit basic icon job-edit-icon"></i>
 
-        <div class="ui dropdown button job-dropdown right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+        <sui-dimmer class="page" [(isDimmed)]="pageDimmed">
+            <div class="ui raised very padded text container segment job-form-segment">
+                <app-create-job-form></app-create-job-form>
+            </div>
+        </sui-dimmer>
+        <button class="ui button job-control-button right floated"><i class="setting icon job-settings-icon"></i></button>
+        <button class="ui button job-control-button right floated" (click)="pageDimmed = !pageDimmed"><i class="plus icon"></i>Add Job</button>
+
+        <div class="ui simple dropdown button job-control-button right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
             <div class="text">Select Job</div>
             <i class="dropdown icon"></i>
             <div class="menu" suiDropdownMenu>
@@ -16,5 +24,8 @@
                 <div class="item">Design Lead</div>
             </div>
         </div>
-      </div>
+     </div>
 </div>
+
+
+

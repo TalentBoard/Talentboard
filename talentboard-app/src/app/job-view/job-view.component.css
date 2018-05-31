@@ -1,5 +1,9 @@
 .job-view {
+<<<<<<< HEAD
+  background-color: white;
+=======
   background-color: #F8F8F8;
+>>>>>>> master
 }
 
 .job-title {
@@ -20,9 +24,32 @@
   padding-left: 5px;
 }
 
+<<<<<<< HEAD
+.job-settings-icon {
+  position: relative;
+  font-size: 15px;
+  padding-left: 8px;
+}
+
+.job-control-button {
+=======
 .job-dropdown {
+>>>>>>> master
   position: relative;
   bottom:10px;
 }
 
+<<<<<<< HEAD
+.job-form-segment {
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+  height: 650px !important;
+  overflow: scroll !important;
+
+
+
+}
+
+=======
+>>>>>>> master
 

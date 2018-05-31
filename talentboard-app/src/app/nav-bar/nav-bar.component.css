@@ -47,7 +47,7 @@
 
 input[type="text"]
 {
-    width: 130px;
+    width: 700px;
     background: transparent;
     background-position: 10px 10px; 
     border: none;
@@ -64,7 +64,7 @@ input[type="text"]
 }
 
 input[type=text]:focus {
-    width: 100%;
+    width: 1000px;
     outline: none;
 }
 

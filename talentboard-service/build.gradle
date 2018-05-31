@@ -31,5 +31,9 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+<<<<<<< HEAD
+=======
+    implementation 'com.google.firebase:firebase-admin:6.1.0'
+>>>>>>> master
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }

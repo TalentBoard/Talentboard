@@ -1,8 +1,7 @@
 
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
-        <a class="item">1</a>
-        <a class="item">2</a>
+        <app-side-nav></app-side-nav>
     </sui-sidebar>
     <sui-sidebar-sibling [isDimmedWhenVisible]="true">
 
@@ -41,8 +40,6 @@
                 </div>
 
             </div>
-
-
         </div>
 
         <app-job-view></app-job-view>

@@ -8,6 +8,10 @@ import { JobViewComponent } from './job-view/job-view.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { CreateJobFormComponent } from './create-job-form/create-job-form.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,16 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     JobViewComponent,
     KanbanBoardComponent,
     CreateJobFormComponent,
-    SideNavComponent
+    SideNavComponent,
+    
   ],
   imports: [
     BrowserModule,
-    SuiModule
+    SuiModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,11 +8,12 @@
 .icon-items {
     color: gray !important;
     font-size: 20px;
+    margin-left: 9px !important;
 }
 
 .light-theme-color-bg {
     background-color: #F8F8F8;
-    border: #F8F8F8 !important; 
+    border: #F8F8F8 !important;
 }
 
 .dark-blue-theme-color {
@@ -49,12 +50,12 @@ input[type="text"]
 {
     width: 200px;
     background: transparent;
-    background-position: 10px 10px; 
+    background-position: 10px 10px;
     border: none;
     font-size: 17px;
     font-family: 'Open Sans', sans-serif;
     background-image: url('../../assets/images/search.png');
-    background-position: 0px 2px; 
+    background-position: 0px 2px;
     background-repeat: no-repeat;
     padding: 0px 0px 0px 30px;
     color: black !important;
@@ -64,7 +65,7 @@ input[type="text"]
 }
 
 input[type=text]:focus {
-    width: 1000px;
+    width: 100vw;
     outline: none;
 }
 

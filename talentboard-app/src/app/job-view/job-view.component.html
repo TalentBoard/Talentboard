@@ -11,17 +11,6 @@
       <i class="setting icon job-settings-icon"></i>
     </button>
 
-    <sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal>
-      <div class="header">Example</div>
-      <div class="content">
-          <p>Modal content</p>
-      </div>
-      <div class="actions">
-          <button class="ui red button" (click)="modal.deny()">Cancel</button>
-          <button class="ui green button" (click)="modal.approve('done')" autofocus>OK</button>
-      </div>
-    </sui-modal>
-
     <button class="ui button job-control-button right floated" (click) = "isClosable = !isClosable">
       <i class="plus icon"></i>Add Job
     </button>

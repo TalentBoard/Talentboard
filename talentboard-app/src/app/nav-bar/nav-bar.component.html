@@ -1,8 +1,7 @@
 
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
-        <a class="item">1</a>
-        <a class="item">2</a>
+        <app-side-nav></app-side-nav>
     </sui-sidebar>
     <sui-sidebar-sibling [isDimmedWhenVisible]="true">
 
@@ -33,16 +32,14 @@
                             <img src="../../assets/images/User123.PNG" class="ui image">
                             User123
                         </h2>
-                           
+
                         <div class="item">Account Settings</div>
                         <div class="item" style="color: #e24f4f !important;">Sign out</div>
-                        
+
                     </div>
                 </div>
 
             </div>
-
-
         </div>
 
         <app-job-view></app-job-view>

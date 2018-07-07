@@ -1,31 +1,30 @@
 <div class="ui segment job-view">
-    <div class="job-title">
+  <div class="job-title">
 
-        <i class="circle icon job-status-icon" style="color: green"></i>
+    <i class="circle icon job-status-icon" style="color: green"></i>
 
-        Software Engineer
+    Software Engineer
 
-        <i class="edit basic icon job-edit-icon"></i>
+    <i class="edit basic icon job-edit-icon"></i>
 
-        <sui-dimmer class="page" [(isDimmed)]="pageDimmed">
-            <div class="ui raised very padded text container segment job-form-segment">
-                <app-create-job-form></app-create-job-form>
-            </div>
-        </sui-dimmer>
-        <button class="ui button job-control-button right floated"><i class="setting icon job-settings-icon"></i></button>
-        <button class="ui button job-control-button right floated" (click)="pageDimmed = !pageDimmed"><i class="plus icon"></i>Add Job</button>
+    <button class="ui button job-control-button right floated">
+      <i class="setting icon job-settings-icon"></i>
+    </button>
 
-        <div class="ui simple dropdown button job-control-button right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
-            <div class="text">Select Job</div>
-            <i class="dropdown icon"></i>
-            <div class="menu" suiDropdownMenu>
-                <div class="disabled item">Software Engineer</div>
-                <div class="item">iOS Engineer</div>
-                <div class="item">Design Lead</div>
-            </div>
-        </div>
-     </div>
+    <button class="ui button job-control-button right floated" (click) = "isClosable = !isClosable">
+      <i class="plus icon"></i>Add Job
+    </button>
+
+    <div class="ui simple dropdown button job-control-button right floated" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+      <div class="text">Select Job</div>
+      <i class="dropdown icon"></i>
+      <div class="menu" suiDropdownMenu>
+        <div class="disabled item">Software Engineer</div>
+        <div class="item">iOS Engineer</div>
+        <div class="item">Design Lead</div>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 

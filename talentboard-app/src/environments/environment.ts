@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyCMophzPwRcBbbAqTFcaH9-zyVTXAeul40",
+    authDomain: "talentboard-88518.firebaseapp.com",
+    databaseURL: "https://talentboard-88518.firebaseio.com",
+    projectId: "talentboard-88518",
+    storageBucket: "talentboard-88518.appspot.com",
+    messagingSenderId: "540164168000"
+  }
 };
 
 /*

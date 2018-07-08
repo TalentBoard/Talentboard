@@ -9,7 +9,7 @@ import * as firebase from 'firebase/app';
 })
 export class AfService {
   user: Observable<firebase.User>;
-  constructor(public afAuth : AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
 
@@ -18,7 +18,7 @@ export class AfService {
     this.afAuth.auth.signInWithPopup(provider);
   }
 
-  logout(){
+  logout() {
     this.afAuth.auth.signOut();
   }
 

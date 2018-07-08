@@ -1,9 +1,9 @@
+
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
         <app-side-nav></app-side-nav>
     </sui-sidebar>
     <sui-sidebar-sibling [isDimmedWhenVisible]="true">
-
 
         <div class="ui borderless top attached demo menu light-theme-color-bg">
 
@@ -23,13 +23,13 @@
 
                 <div class="ui simple dropdown link item" suiDropdown>
                     <span class="text">
-                        <img class="ui avatar image" [src]="user.photoURL"> &nbsp;{{user.displayName}}
+                        <img class="ui avatar image" [src]="user.profileURL"> &nbsp;{{user.name}}
                     </span>
                     <i class="dropdown icon" style="color: black;"></i>
                     <div class="menu" suiDropdownMenu>
                         <h2 class="ui header">
-                            <img [src]="user.photoURL" class="ui image">
-                            {{user.displayName}}
+                            <img [src]="user.profileURL" class="ui image">
+                            {{user.name}}
                         </h2>
 
                         <div class="item">Account Settings</div>

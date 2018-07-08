@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AfService } from './providers/af.service';
+import { ColumnComponent } from './column/column.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AfService } from './providers/af.service';
     CreateJobFormComponent,
     SideNavComponent,
     LoginPageComponent,
-    NavBarComponent
+    NavBarComponent,
+    ColumnComponent
   ],
   imports: [
     BrowserModule,

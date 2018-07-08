@@ -1,0 +1,7 @@
+<div class="four wide column" style="margin-top: 3em" dnd-droppable (onDropSuccess)="addItem($event)">
+  <h3 class="ui header">
+    {{name}}
+  </h3>
+  <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true" [dragData]="applicant"
+    (onDragSuccess)="removeItem($event)"></app-applicant>
+</div>

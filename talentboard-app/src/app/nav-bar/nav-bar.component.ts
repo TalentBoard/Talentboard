@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SuiModule} from 'ng2-semantic-ui';
+import { AfService } from '../providers/af.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,9 +9,12 @@ import {SuiModule} from 'ng2-semantic-ui';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+
+  constructor(public afService: AfService) { }
 
   ngOnInit() {
+
   }
 
 }

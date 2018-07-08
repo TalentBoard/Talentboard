@@ -4,8 +4,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
-    {path: '', component: NavBarComponent },
-    {path: 'login', component: LoginPageComponent}
+    {path: '', component: LoginPageComponent },
+    {path: 'app', component: NavBarComponent}
 ]
 
 @NgModule({

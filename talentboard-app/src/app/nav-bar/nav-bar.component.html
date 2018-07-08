@@ -1,4 +1,3 @@
-
 <sui-sidebar-container class="ui bottom attached segment">
     <sui-sidebar class="inverted vertical" #sidebar>
         <app-side-nav></app-side-nav>
@@ -24,13 +23,13 @@
 
                 <div class="ui simple dropdown link item" suiDropdown>
                     <span class="text">
-                        <img class="ui avatar image" src="../../assets/images/User123.PNG"> &nbsp;User123
+                        <img class="ui avatar image" [src]="user.photoURL"> &nbsp;{{user.displayName}}
                     </span>
                     <i class="dropdown icon" style="color: black;"></i>
                     <div class="menu" suiDropdownMenu>
                         <h2 class="ui header">
-                            <img src="../../assets/images/User123.PNG" class="ui image">
-                            User123
+                            <img [src]="user.photoURL" class="ui image">
+                            {{user.displayName}}
                         </h2>
 
                         <div class="item">Account Settings</div>
@@ -47,13 +46,3 @@
 
     </sui-sidebar-sibling>
 </sui-sidebar-container>
-
-
-
-
-
-
-
-
-
-

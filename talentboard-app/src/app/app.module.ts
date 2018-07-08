@@ -15,6 +15,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AfService } from './providers/af.service';
 import { ColumnComponent } from './column/column.component';
+import { ApplicantComponent } from './applicant/applicant.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ColumnComponent } from './column/column.component';
     SideNavComponent,
     LoginPageComponent,
     NavBarComponent,
-    ColumnComponent
+    ColumnComponent,
+    ApplicantComponent
   ],
   imports: [
     BrowserModule,

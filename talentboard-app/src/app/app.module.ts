@@ -14,6 +14,9 @@ import { environment } from '../environments/environment';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AfService } from './providers/af.service';
+import { ColumnComponent } from './column/column.component';
+import { ApplicantComponent } from './applicant/applicant.component';
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { AfService } from './providers/af.service';
     CreateJobFormComponent,
     SideNavComponent,
     LoginPageComponent,
-    NavBarComponent
+    NavBarComponent,
+    ColumnComponent,
+    ApplicantComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { AfService } from './providers/af.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DndModule.forRoot()
   ],
   providers: [AfService],
   bootstrap: [AppComponent]

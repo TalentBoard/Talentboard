@@ -7,4 +7,9 @@ export class Applicant {
   public resumeURL: string;
   public favouritedUserIds: Array<string>;
   public assignedUserId: string;
+
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
+  }
 }

@@ -1,0 +1,71 @@
+.icon-menu {
+  background-color: #079EF0 !important;
+  color: white;
+  font-size: 14px;
+
+}
+
+.icon-items {
+  color: gray !important;
+  font-size: 20px;
+  margin-left: 9px !important;
+}
+
+.light-theme-color-bg {
+  background-color: #F8F8F8;
+  border: #F8F8F8 !important;
+}
+
+.dark-blue-theme-color {
+  color: #31393E;
+}
+
+.dark-blue-theme-color-bg {
+  background-color: #31393E;
+}
+
+.white {
+  color: white;
+}
+
+.off-gray {
+  color: #B9BCBD;
+}
+
+.menu-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+}
+
+.icon {
+  color: white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #C4C5C3;
+  opacity: 1; /* Firefox */
+}
+
+input[type="text"]
+{
+  width: 200px;
+  background: transparent;
+  background-position: 10px 10px;
+  border: none;
+  font-size: 17px;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('../../assets/images/search.png');
+  background-position: 0px 2px;
+  background-repeat: no-repeat;
+  padding: 0px 0px 0px 30px;
+  color: black !important;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+
+}
+
+input[type=text]:focus {
+  width: 100vw;
+  outline: none;
+}
+

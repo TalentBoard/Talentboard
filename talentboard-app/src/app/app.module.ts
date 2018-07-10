@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -44,9 +44,8 @@ import { DndModule } from 'ng2-dnd';
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireDatabaseModule,
     DndModule.forRoot()
   ],
   providers: [AuthService, UserService, AuthGuard, AppResolver, {provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Injectable()
 export class UserService {
 
-  constructor(
-   public db: AngularFirestore,
-   public afAuth: AngularFireAuth
- ) {
- }
-
+  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) { }
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {

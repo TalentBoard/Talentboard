@@ -20,6 +20,9 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { JobViewComponent } from './job-view/job-view.component';
 import { AppResolver } from './nav-bar/nav-bar.resolver';
+import { ColumnComponent } from './column/column.component';
+import { ApplicantComponent } from './applicant/applicant.component';
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { AppResolver } from './nav-bar/nav-bar.resolver';
     NavBarComponent,
     SideNavComponent,
     KanbanBoardComponent,
-    JobViewComponent
+    JobViewComponent,
+    ColumnComponent,
+    ApplicantComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { AppResolver } from './nav-bar/nav-bar.resolver';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    DndModule.forRoot()
   ],
   providers: [AuthService, UserService, AuthGuard, AppResolver],
   bootstrap: [AppComponent]

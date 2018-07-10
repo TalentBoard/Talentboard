@@ -26,6 +26,7 @@
     "core-js": "^2.4.1",
     "firebase": "^4.8.2",
     "ng2-bootstrap": "^1.4.0",
+    "ng2-dnd": "^5.0.2",
     "ng2-semantic-ui": "^0.9.7",
     "ngx-bootstrap": "^1.9.3",
     "node-sass": "^4.5.3",

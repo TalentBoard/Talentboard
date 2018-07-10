@@ -1,4 +1,4 @@
-<div class="ui grid card-column">
+<!--<div class="ui grid card-column">
   <div class="four wide column centered">
       <div class="ui link card">
           <div class="content">
@@ -197,4 +197,10 @@
           </div>
         </div>
   </div>
+</div>-->
+<div class="ui grid container-fluid center aligned">
+  <app-column [name]='"Applied"' [applicants]="applicants"></app-column>
+  <app-column [name]='"Interviewed"'></app-column>
+  <app-column [name]='"Declined"'></app-column>
+  <app-column [name]='"Sent Offer"'></app-column>
 </div>

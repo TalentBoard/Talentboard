@@ -15,13 +15,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import {SuiModule} from 'ng2-semantic-ui';
+import { SuiModule, SuiDropdownModule } from 'ng2-semantic-ui';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { JobViewComponent } from './job-view/job-view.component';
 import { AppResolver } from './nav-bar/nav-bar.resolver';
 import { ColumnComponent } from './column/column.component';
 import { ApplicantComponent } from './applicant/applicant.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
 
 @NgModule({
@@ -39,14 +40,16 @@ import { DndModule } from 'ng2-dnd';
   imports: [
     BrowserModule,
     SuiModule,
+    SuiDropdownModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     DndModule.forRoot()
   ],
-  providers: [AuthService, UserService, AuthGuard, AppResolver],
+  providers: [AuthService, UserService, AuthGuard, AppResolver, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
+import { JobService } from './core/job.service';
 import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -52,6 +53,7 @@ import { DndModule } from 'ng2-dnd';
   providers: [
     AuthService,
     UserService,
+    JobService,
     ApplicantService,
     AuthGuard,
     AppResolver,

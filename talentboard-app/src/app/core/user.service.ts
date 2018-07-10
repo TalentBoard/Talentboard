@@ -49,7 +49,7 @@ export class UserService {
         displayName: value.name,
         photoURL: user.photoURL
       }).then(res => {
-        resolve(res);
+        resolve();
       }, err => reject(err));
     });
   }

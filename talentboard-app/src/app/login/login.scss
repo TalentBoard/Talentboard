@@ -1,13 +1,33 @@
 .header{
   text-align: center;
-  font-size: 30px;
-  margin-bottom: 40px;
+  font-size: 25px !important;
+  margin-bottom: 20px;
+}
+
+#container-log-in{
+  padding-top: 10% !important;
+  padding-left: 20% !important;
+  padding-right: 20% !important;
 }
 
 .row{
   margin-top: 10px;
 }
 
+.button-login {
+  margin-top: 10px !important;
+}
+
+#input-login {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+#log-in-service {
+  margin-top: 4px !important;
+}
+
 .error{
   color: red;
 }
+

@@ -1,39 +1,40 @@
-<h1 class="header">Login with Firebase or Social Providers</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+<div class="ui container" id="container-log-in">
+  <div class="ui segment raised">
+
+    <div class="content">
       <form [formGroup]="loginForm">
-        <div class="form-group">
-          <label>Email address</label>
-          <input type="email" formControlName="email" class="form-control">
+        <div class="ui left icon input fluid" id="input-login">
+          <input type="email" formControlName="email" placeholder="E-mail address">
+          <i class="left user icon"></i>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" formControlName="password">
-          <label class="error">{{errorMessage}}</label>
+        <div class="ui left icon input fluid" id="input-login">
+          <i class="lock icon"></i>
+          <input type="password" formControlName="password" placeholder="Password">
+
         </div>
-        <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-default">Login</button>
+        <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
+        <div class="center aligned">
+          <div class="ui fluid buttons">
+            <button class="ui black button">Register</button>
+            <button type="submit" (click)="tryLogin(loginForm.value)" class="ui button">Login</button>
+          </div>
+          <div class="ui horizontal divider">
+            Or
+          </div>
+        </div>
       </form>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button type="button" class="btn btn-primary btn-block" (click)="tryFacebookLogin()">Login with Facebook</button>
+    <button type="button" class="ui fluid google plus button" (click)="tryGoogleLogin()" id="log-in-service">
+      <i class="google icon"></i>
+      Login with Gmail
+    </button>
+    <div class="ui fluid facebook button" id="log-in-service" (click)="tryFacebookLogin()">
+      <i class="facebook icon"></i>
+      Login with Facebook
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Login with Google</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button type="button" class="btn btn-info btn-block" (click)="tryTwitterLogin()">Login with Twitter</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <p>No account yet? <a href="/register">Create an account</a></p>
+    <div class="ui fluid twitter button" id="log-in-service" (click)="tryTwitterLogin()">
+      <i class="twitter icon"></i>
+      Login with Twitter
     </div>
   </div>
 </div>

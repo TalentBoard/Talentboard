@@ -5,7 +5,7 @@ import { AuthService } from '../core/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountUser } from '../model/User';
+import { User } from '../model/User';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,7 +14,7 @@ import { AccountUser } from '../model/User';
 })
 export class NavBarComponent implements OnInit {
 
-  user: AccountUser = new AccountUser();
+  user: User = new User();
   profileForm: FormGroup;
 
   constructor(

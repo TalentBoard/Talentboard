@@ -12,6 +12,6 @@ export class User {
     this.name = '';
     this.email = '';
     this.provider = '';
-    this.jobIds = null;
+    this.jobIds = [];
   }
 }

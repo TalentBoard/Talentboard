@@ -79,6 +79,4 @@ export class AuthService {
       reject();
     });
   }
-
-
 }

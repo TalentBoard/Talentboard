@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
+import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -48,7 +49,14 @@ import { DndModule } from 'ng2-dnd';
     AngularFireDatabaseModule,
     DndModule.forRoot()
   ],
-  providers: [AuthService, UserService, AuthGuard, AppResolver, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    AuthService,
+    UserService,
+    ApplicantService,
+    AuthGuard,
+    AppResolver,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

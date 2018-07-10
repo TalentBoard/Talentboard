@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -16,9 +15,9 @@ export class UserService {
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
-      const user = firebase.auth().onAuthStateChanged(function(user){
-        if (user) {
-          resolve(user);
+      const user = firebase.auth().onAuthStateChanged((value) => {
+        if (value) {
+          resolve(value);
         } else {
           reject('No user logged in');
         }

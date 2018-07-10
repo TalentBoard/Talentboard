@@ -36,4 +36,3 @@ export class AppResolver implements Resolve<User> {
   }
 }
 
-

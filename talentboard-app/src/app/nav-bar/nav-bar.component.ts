@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SuiModule } from 'ng2-semantic-ui';
 import { UserService } from '../core/user.service';
 import { AuthService } from '../core/auth.service';
 import { ActivatedRoute } from '@angular/router';

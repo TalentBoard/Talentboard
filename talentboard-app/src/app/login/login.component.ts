@@ -28,20 +28,6 @@ export class LoginComponent {
     });
   }
 
-  tryFacebookLogin() {
-    this.authService.doFacebookLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
-    });
-  }
-
-  tryTwitterLogin() {
-    this.authService.doTwitterLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
-    });
-  }
-
   tryGoogleLogin() {
     this.authService.doGoogleLogin()
     .then(res => {

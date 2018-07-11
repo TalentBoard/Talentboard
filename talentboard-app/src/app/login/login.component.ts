@@ -58,4 +58,8 @@ export class LoginComponent {
       this.errorMessage = err.message;
     });
   }
+
+  register() {
+    this.router.navigate(['/register']);
+  }
 }

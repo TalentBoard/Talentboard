@@ -1,6 +1,6 @@
 <div class="ui container" id="container-log-in">
-  <div class="ui segment raised">
-
+  <img class="ui centered medium image" src="../../assets/images/logo-plain-black.svg">
+  <div class="ui basic segment" style="padding: 1em; margin-top:25px;">
     <div class="content">
       <form [formGroup]="loginForm">
         <div class="ui left icon input fluid" id="input-login">
@@ -15,8 +15,7 @@
         <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
         <div class="center aligned">
           <div class="ui fluid buttons">
-            <button class="ui black button">Register</button>
-            <button type="submit" (click)="tryLogin(loginForm.value)" class="ui button">Login</button>
+            <button type="submit" (click)="tryLogin(loginForm.value)" class="ui button instagram button-login">Login</button>
           </div>
           <div class="ui horizontal divider">
             Or
@@ -24,17 +23,22 @@
         </div>
       </form>
     </div>
-    <button type="button" class="ui fluid google plus button" (click)="tryGoogleLogin()" id="log-in-service">
+    <button type="button" class="ui fluid black button" (click)="tryGoogleLogin()" id="log-in-service">
       <i class="google icon"></i>
       Login with Gmail
     </button>
-    <div class="ui fluid facebook button" id="log-in-service" (click)="tryFacebookLogin()">
-      <i class="facebook icon"></i>
-      Login with Facebook
-    </div>
-    <div class="ui fluid twitter button" id="log-in-service" (click)="tryTwitterLogin()">
-      <i class="twitter icon"></i>
-      Login with Twitter
-    </div>
+    <!--
+          <div class="ui fluid facebook button" id="log-in-service" (click)="tryFacebookLogin()">
+            <i class="facebook icon"></i>
+            Login with Facebook
+          </div>
+          <div class="ui fluid twitter button" id="log-in-service" (click)="tryTwitterLogin()">
+            <i class="twitter icon"></i>
+            Login with Twitter
+          </div>
+          -->
+  </div>
+  <div class="ui basic segment center aligned">
+      New to Talentboard? <a routerLink="/register"  routerLinkActive="active">Created an Account</a>.
   </div>
 </div>

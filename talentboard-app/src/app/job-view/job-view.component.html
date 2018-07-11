@@ -47,12 +47,35 @@
 </div>
 
 <ng-template let-context let-modal="modal" #modalTemplate>
-  <div class="header">Example</div>
+  <div class="header">Add Job</div>
   <div class="content">
-      <p>{{ context.data }}</p>
+    <form class="ui form">
+      <div class="field">
+        <label for="title">Job Title</label>
+        <input type="text" class="form-control" id="title" required>
+      </div>
+      <div class="field">
+        <label for="description">Job Description</label>
+        <textarea id="description" rows="8"></textarea>
+      </div>
+      <div class="field">
+        <label for="location">Location</label>
+        <sui-select class="selection">
+          <sui-select-option *ngFor="let option of locations" [value]="option">
+          </sui-select-option>
+        </sui-select>
+      </div>
+      <div class="field">
+        <label for="salary">Salary</label>
+        <div class="ui labeled input">
+          <div class="ui label">$</div>
+          <input type="text" class="form-control" id="salary" required>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="actions">
-      <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
-      <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+    <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+    <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
   </div>
 </ng-template>

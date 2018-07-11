@@ -14,6 +14,7 @@ import { UserService } from './core/user.service';
 import { JobService } from './core/job.service';
 import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -53,6 +54,7 @@ import { RegisterAddInfoComponent } from './register-add-info/register-add-info.
     SuiModule,
     SuiDropdownModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features

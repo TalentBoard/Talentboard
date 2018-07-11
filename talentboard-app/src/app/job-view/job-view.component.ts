@@ -18,6 +18,15 @@ export class JobViewComponent implements OnInit {
   selectedJobName:string;
   selectedJobList:Job[];
 
+  locations = [
+    'Toronto, ON',
+    'Ottawa, ON',
+    'Vancouver, BC',
+    'Montreal, QC',
+    'Halifax, NS',
+    'Calgary, AB'
+  ];
+
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
 
@@ -25,11 +34,13 @@ export class JobViewComponent implements OnInit {
 
   ngOnInit() { }
 
-  open(dynamicContent: string) {
+  open() {
     const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
     config.closeResult = 'closed!';
-    config.context = { data: dynamicContent };
+    config.isClosable = false;
+    config.size = 'small';
+    config.transitionDuration = 300;
 
     this.modalService
       .open(config)

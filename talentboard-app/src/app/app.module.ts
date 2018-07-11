@@ -30,6 +30,7 @@ import { JobFormComponent } from './job-form/job-form.component';
 
 import { FormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { ApplicantFormComponent } from './applicant-form/applicant-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ToastrModule } from 'ngx-toastr';
     JobViewComponent,
     ColumnComponent,
     ApplicantComponent,
-    JobFormComponent
+    JobFormComponent,
+    ApplicantFormComponent
   ],
   imports: [
     BrowserModule,

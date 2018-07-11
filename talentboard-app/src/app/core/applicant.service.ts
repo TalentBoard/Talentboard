@@ -4,10 +4,12 @@ import { Applicant } from '../model/Applicant';
 import { Observable } from 'rxjs/Observable';
 import {NgForm} from "@angular/forms";
 
+
 @Injectable()
 export class ApplicantService {
 
   applicants: Observable<Applicant[]>;
+  currentApplicant:Applicant;
 
   constructor(private db: AngularFireDatabase) {
     this.applicants = db.list<Applicant>('applicants').valueChanges();
@@ -37,6 +39,16 @@ export class ApplicantService {
   }
 
   resetForm(jobForm?: NgForm) {
+
+  }
+
+  getApplicantByStatus(status:String){
+    return this.db.list("applicants",ref=>{
+      let q = ref.orderByChild("status").equalTo(status)
+      return q;
+    });
+
+
 
   }
 }

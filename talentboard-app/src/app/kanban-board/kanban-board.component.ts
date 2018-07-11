@@ -41,7 +41,20 @@ export class KanbanBoardComponent implements OnInit {
 
   ngOnInit() {
 
-    var x = this.applicantService.getAllApplicants();
+    // var x = this.applicantService.getAllApplicants();
+    // x.snapshotChanges().subscribe(item => {
+    //   this.applicants = [];
+    //   item.forEach(element => {
+    //     var y = element.payload.toJSON();
+    //     // y["$key"] = element.key;
+    //     this.applicants.push(y as Applicant);
+    //   });
+    // });
+    this.getAppliedApplicant();
+  }
+
+  getAppliedApplicant(){
+    var x = this.applicantService.getApplicantByStatus("Applied");
     x.snapshotChanges().subscribe(item => {
       this.applicants = [];
       item.forEach(element => {

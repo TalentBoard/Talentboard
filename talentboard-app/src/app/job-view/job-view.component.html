@@ -11,8 +11,8 @@
 
 
 
-    <button class="ui button job-control-button right floated">
-      <i class="setting icon job-settings-icon" ></i>
+    <button class="ui button job-control-button right floated" (click)="newApplicant();">
+      <i class="plus icon"></i>Add Applicant
     </button>
 
     <button class="ui button job-control-button right floated" (click)="newJob();">
@@ -36,12 +36,12 @@
       <!--next task id find job by name-->
 
     </select>
-    <div >
-      {{selectedJobList[0].title}}
-      {{selectedJobList[0].applicantIds}}
-      {{selectedJobList[0].location}}
-      {{selectedJobList[0].salary}}
-      {{selectedJobList[0].isOpen}}
-    </div>
+    <!--<div >-->
+      <!--{{selectedJobList[0].title}}-->
+      <!--{{selectedJobList[0].applicantIds}}-->
+      <!--{{selectedJobList[0].location}}-->
+      <!--{{selectedJobList[0].salary}}-->
+      <!--{{selectedJobList[0].isOpen}}-->
+    <!--</div>-->
   </div>
 </div>

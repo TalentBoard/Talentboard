@@ -35,6 +35,10 @@ export class JobViewComponent implements OnInit {
   newJob(){
     this.router.navigate(['./addJob']);
   }
+
+  newApplicant(){
+    this.router.navigate(['./addApplicant']);
+  }
   //
 
 

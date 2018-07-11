@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {JobService} from "../core/job.service";
-import {Job} from "../model/Job";
-import {JobFormComponent} from "../job-form/job-form.component";
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {JobService} from '../core/job.service';
+import {Job} from '../model/Job';
+import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
+
+export interface IContext {
+  data: string;
+}
 
 @Component({
   selector: 'app-job-view',
@@ -16,64 +18,22 @@ export class JobViewComponent implements OnInit {
   selectedJobName:string;
   selectedJobList:Job[];
 
-  constructor(private router: Router,private jobService:JobService) { }
+  @ViewChild('modalTemplate')
+  public modalTemplate: ModalTemplate<IContext, string, string>;
 
-  ngOnInit() {
-    var x = this.jobService.getAllJobs();
-    x.snapshotChanges().subscribe(item => {
-      this.jobList = [];
-      item.forEach(element => {
-        var y = element.payload.toJSON();
-        // y["$key"] = element.key;
-        this.jobList.push(y as Job);
-      });
-    });
+  constructor(public modalService: SuiModalService) { }
+
+  ngOnInit() { }
+
+  open(dynamicContent: string) {
+    const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+
+    config.closeResult = 'closed!';
+    config.context = { data: dynamicContent };
+
+    this.modalService
+      .open(config)
+      .onApprove(result => { console.log(result); })
+      .onDeny(result => { console.log(result); });
   }
-
-
-
-  newJob(){
-    this.router.navigate(['./addJob']);
-  }
-
-  newApplicant(){
-    this.router.navigate(['./addApplicant']);
-  }
-  //
-
-
-
-  selectedJobHandler(event:any){
-    this.selectedJobName=event.target.value;
-
-    var x = this.jobService.getJobByName(this.selectedJobName);
-    x.snapshotChanges().subscribe(item => {
-      this.selectedJobList = [];
-      item.forEach(element => {
-        var y = element.payload.toJSON();
-        // y["$key"] = element.key;
-        this.selectedJobList.push(y as Job);
-      });
-    });
-    // this.selectedJob=this.jobService.getJobByName(this.selectedJobName)
-
-  }
-
-  onEdit(){
-    this.router.navigate(['./addJob']);
-    // this.jobFormComponent.onEdit();
-    this.jobService.currentJob = {
-      id: null,
-      title: 'sahhhhheeddd',
-      location: '',
-      description: '',
-      salary: '',
-      applicantIds:"",
-      isOpen:false
-    }
-
-  }
-
-
-
 }

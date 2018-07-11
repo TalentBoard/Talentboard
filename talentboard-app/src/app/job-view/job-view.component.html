@@ -5,17 +5,17 @@
 
     {{selectedJobName}}
 
-    <button class="ui button job-control-button right floated" (click)="onEdit();">
+    <button class="ui button job-control-button right floated">
       <i class="edit basic icon job-edit-icon" ></i>
     </button>
 
 
 
-    <button class="ui button job-control-button right floated" (click)="newApplicant();">
+    <button class="ui button job-control-button right floated">
       <i class="plus icon"></i>Add Applicant
     </button>
 
-    <button class="ui button job-control-button right floated" (click)="newJob();">
+    <button class="ui button job-control-button right floated" (click)="open('Hello')">
       <i class="plus icon"></i>Add Job
     </button>
 
@@ -30,7 +30,7 @@
         <!--&lt;!&ndash;</select>&ndash;&gt;-->
       <!--</div>-->
     <!--</div>-->
-    <select id="selectedJob" class="ui simple dropdown button menu job-control-button right floated" (change)="selectedJobHandler($event)" suiDropdown>
+    <select id="selectedJob" class="ui simple dropdown button menu job-control-button right floated" suiDropdown>
       <option  [disabled]="true">Select Job</option>
       <option *ngFor="let job of jobList">{{job.title}}</option>
       <!--next task id find job by name-->
@@ -45,3 +45,14 @@
     <!--</div>-->
   </div>
 </div>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">Example</div>
+  <div class="content">
+      <p>{{ context.data }}</p>
+  </div>
+  <div class="actions">
+      <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+      <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+  </div>
+</ng-template>

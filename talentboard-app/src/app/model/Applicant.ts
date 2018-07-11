@@ -11,5 +11,10 @@ export class Applicant {
   constructor(name: string, email: string) {
     this.name = name;
     this.email = email;
+    this.phoneNumber = '';
+    this.status = 'Applied';
+    this.resumeURL = '';
+    this.favouritedUserIds = [];
+    this.assignedUserId = '';
   }
 }

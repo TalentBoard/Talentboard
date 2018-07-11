@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase} from 'angularfire2/database';
 import { Applicant } from '../model/Applicant';
 import { Observable } from 'rxjs/Observable';
+import {NgForm} from "@angular/forms";
 
 @Injectable()
 export class ApplicantService {
@@ -12,8 +13,11 @@ export class ApplicantService {
     this.applicants = db.list<Applicant>('applicants').valueChanges();
   }
 
-  getAllApplicants(): Observable<Applicant[]> {
-    return this.applicants;
+  // getAllApplicants(): Observable<Applicant[]> {
+  //   return this.applicants;
+  // }
+  getAllApplicants() {
+    return this.db.list<Applicant>('applicants');
   }
 
   addApplicant(applicant: Applicant) {
@@ -26,5 +30,13 @@ export class ApplicantService {
 
   updateApplicant(id: string, updatedApplicant: Applicant) {
     this.db.list<Applicant>('applicants').set(id, updatedApplicant);
+  }
+
+  onSubmit(jobForm:NgForm){
+
+  }
+
+  resetForm(jobForm?: NgForm) {
+
   }
 }

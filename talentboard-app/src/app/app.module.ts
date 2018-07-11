@@ -26,6 +26,10 @@ import { ColumnComponent } from './column/column.component';
 import { ApplicantComponent } from './applicant/applicant.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
+import { JobFormComponent } from './job-form/job-form.component';
+
+import { FormsModule} from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import { DndModule } from 'ng2-dnd';
     KanbanBoardComponent,
     JobViewComponent,
     ColumnComponent,
-    ApplicantComponent
+    ApplicantComponent,
+    JobFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,9 @@ import { DndModule } from 'ng2-dnd';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthService,

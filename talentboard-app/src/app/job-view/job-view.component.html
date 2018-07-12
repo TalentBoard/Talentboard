@@ -1,66 +1,44 @@
-<div class="ui segment job-view">
-  <div class="job-title">
+<div class="ui segment">
+  <div class="ui two column grid">
+    <div class="column">
+      <div class="job-title">
+        <i class="circle icon job-status-icon green" [ngStyle]="{'color': currentJob.isOpen === true ? 'green' : 'red' }"></i>
+        {{ currentJob.title }}
+        <i class="edit basic icon job-edit-icon"></i>
+      </div>
+    </div>
 
-    <i class="circle icon job-status-icon" style="color: green"></i>
+    <div class="column">
+      <button class="ui button right floated" (click)="openAddJobModal()">
+        <i class="plus icon"></i>Add Job
+      </button>
 
-    {{selectedJobName}}
-
-    <button class="ui button job-control-button right floated">
-      <i class="edit basic icon job-edit-icon" ></i>
-    </button>
-
-
-
-    <button class="ui button job-control-button right floated">
-      <i class="plus icon"></i>Add Applicant
-    </button>
-
-    <button class="ui button job-control-button right floated" (click)="open('Hello')">
-      <i class="plus icon"></i>Add Job
-    </button>
-
-    <!--<div class="ui simple dropdown button job-control-button right floated" suiDropdown>-->
-      <!--<div class="text">Select Job</div>-->
-      <!--<i class="dropdown icon"></i>-->
-      <!--<div class="menu" suiDropdownMenu>-->
-        <!--&lt;!&ndash;<div class="disabled item">Software Engineer</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="item">iOS Engineer</div>&ndash;&gt;-->
-        <!--<div class="item" ng-model="selectItem" *ngFor="let user of jobList">{{user.title}}</div>-->
-        <!--&lt;!&ndash;<select ng-model="selectItem" ng-options="job as job.title for job in jobList">&ndash;&gt;-->
-        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-    <select id="selectedJob" class="ui simple dropdown button menu job-control-button right floated" suiDropdown>
-      <option  [disabled]="true">Select Job</option>
-      <option *ngFor="let job of jobList">{{job.title}}</option>
-      <!--next task id find job by name-->
-
-    </select>
-    <!--<div >-->
-      <!--{{selectedJobList[0].title}}-->
-      <!--{{selectedJobList[0].applicantIds}}-->
-      <!--{{selectedJobList[0].location}}-->
-      <!--{{selectedJobList[0].salary}}-->
-      <!--{{selectedJobList[0].isOpen}}-->
-    <!--</div>-->
+      <div class="ui button dropdown right floated" suiDropdown>
+        <div class="text">Select Job</div>
+        <i class="dropdown icon"></i>
+        <div class="menu" suiDropdownMenu>
+          <div class="item" *ngFor="let job of jobList">{{ job.title }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <ng-template let-context let-modal="modal" #modalTemplate>
-  <div class="header">Add Job</div>
+  <div class="header">{{ context.title }}</div>
   <div class="content">
     <form class="ui form">
       <div class="field">
         <label for="title">Job Title</label>
-        <input type="text" class="form-control" id="title" required>
+        <input type="text" id="title" required [(ngModel)]="newJob.title" name="title" value="{{ context.job.title }}">
       </div>
       <div class="field">
         <label for="description">Job Description</label>
-        <textarea id="description" rows="8"></textarea>
+        <textarea id="description" rows="8" required [(ngModel)]="newJob.description" name="description" value="{{ context.job.description }}"></textarea>
       </div>
       <div class="field">
         <label for="location">Location</label>
-        <sui-select class="selection">
+        <sui-select class="selection" [(ngModel)]="newJob.location" name="location">
           <sui-select-option *ngFor="let option of locations" [value]="option">
           </sui-select-option>
         </sui-select>
@@ -69,13 +47,13 @@
         <label for="salary">Salary</label>
         <div class="ui labeled input">
           <div class="ui label">$</div>
-          <input type="text" class="form-control" id="salary" required>
+          <input type="text" id="salary" required [(ngModel)]="newJob.salary" name="salary">
         </div>
       </div>
     </form>
   </div>
   <div class="actions">
-    <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
-    <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+    <button class="ui red button" (click)="modal.deny()">Cancel</button>
+    <button class="ui green button" (click)="modal.approve()" autofocus>OK</button>
   </div>
 </ng-template>

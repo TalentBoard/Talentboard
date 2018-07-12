@@ -6,4 +6,13 @@ export class Job {
   public salary: string;
   public applicantIds: string;
   public isOpen: boolean;
+
+  constructor() {
+    this.title = '';
+    this.description = '';
+    this.location = '';
+    this.salary = '';
+    this.applicantIds = [];
+    this.isOpen = true;
+  }
 }

@@ -1,12 +1,6 @@
-.job-view {
-  background-color: white;
-}
-
 .job-title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
   font-size: 24px;
+  padding-top: 5px;
 }
 
 .job-status-icon {
@@ -16,30 +10,6 @@
 }
 
 .job-edit-icon {
-  font-size: 15px;
+  font-size: 20px;
   padding-left: 5px;
 }
-
-.job-settings-icon {
-  position: relative;
-  font-size: 15px;
-  padding-left: 8px;
-}
-
-.job-control-button {
-  position: relative;
-  bottom:10px;
-}
-
-.job-form-segment {
-  margin-top: 50px !important;
-  margin-bottom: 50px !important;
-  height: 650px !important;
-  overflow: scroll !important;
-}
-
-.ui.fluid.input {
-  margin-top: 15px;
-}
-
-

@@ -50,7 +50,7 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.authService.doLogout()
     .then((res) => {
-      this.location.back();
+      window.location.href = '/';
     }, (error) => {
       console.log('Logout error', error);
     });

@@ -6,7 +6,6 @@
   </div>
 
   <div class="ui basic segment">
-
     <div class="content">
       <button type="button" class="ui fluid black button" (click)="tryGoogleLogin()" id="log-in-service">
         <i class="google icon"></i>
@@ -17,7 +16,7 @@
       </div>
       <form [formGroup]="registerForm">
         <div class="ui left icon input fluid" id="input-register">
-          <input type="text" formControlName="name" placeholder="Username">
+          <input type="text" formControlName="username" placeholder="Username">
           <i class="left user icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-register">
@@ -25,23 +24,19 @@
           <i class="left envelope icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-register">
-          <input type="text" formControlName="workplace" placeholder="Where do you work?">
-          <i class="left building icon"></i>
-        </div>
-        <div class="ui left icon input fluid" id="input-register">
-          <input type="text" formControlName="title" placeholder="Your position">
-          <i class="left briefcase icon"></i>
-        </div>
-        <div class="ui left icon input fluid" id="input-register">
           <i class="lock icon"></i>
           <input type="password" formControlName="password" placeholder="Password">
         </div>
-        <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
+        <div class="ui left icon input fluid" id="input-register">
+          <i class="lock icon"></i>
+          <input type="password" formControlName="password" placeholder="Confirm password">
+        </div>
         <div class="center aligned">
           <div class="ui fluid buttons">
             <button type="submit" (click)="tryRegister(registerForm.value)" class="ui button instagram button-login">Register Account</button>
           </div>
         </div>
+        <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
       </form>
     </div>
   </div>

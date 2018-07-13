@@ -16,10 +16,12 @@ export class AppResolver implements Resolve<User> {
         .then(res => {
           if (res.providerData[0].providerId === 'password') {
             user.id = res.uid;
-            user.profileURL = 'http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png';
+            user.profileURL = 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png';
+            //'http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png';
             user.email = res.email;
             user.name = res.displayName;
             user.provider = res.providerData[0].providerId;
+            this.userService.addUser(user);
             return resolve(user);
           }
           user.id = res.uid;
@@ -27,6 +29,7 @@ export class AppResolver implements Resolve<User> {
           user.name = res.displayName;
           user.provider = res.providerData[0].providerId;
           user.email = res.email;
+          this.userService.addUser(user);
           return resolve(user);
         }, err => {
           this.router.navigate(['/login']);

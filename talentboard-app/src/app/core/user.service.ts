@@ -19,7 +19,11 @@ export class UserService {
   }
 
   addUser(user: User) {
-    this.db.list<User>('users').push(user);
+    if (this.getUserById(user.id) == null) {
+      this.db.list<User>('users').push(user);
+    } else {
+      this.updateUser(user.id, user);
+    }
   }
 
   getUserById(id: string): Observable<User> {
@@ -44,11 +48,20 @@ export class UserService {
 
   updateCurrentUser(value) {
     return new Promise((resolve, reject) => {
-      const user = firebase.auth().currentUser;
-      user.updateProfile({
+      const res = firebase.auth().currentUser;
+      // const user = new User();
+      // user.id = res.uid;
+      // user.profileURL = value.photoURL;
+      // user.name = value.username;
+      // user.provider = res.providerData[0].providerId;
+      // user.email = res.email;
+      // user.workplace = value.workplace;
+      // user.title = value.title;
+      // this.addUser(user);
+      res.updateProfile({
         displayName: value.name,
-        photoURL: user.photoURL
-      }).then(res => {
+        photoURL: res.photoURL
+      }).then(res_ => {
         resolve();
       }, err => reject(err));
     });

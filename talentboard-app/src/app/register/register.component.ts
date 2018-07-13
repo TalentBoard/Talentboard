@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
@@ -31,22 +31,6 @@ export class RegisterComponent {
       password: ['', Validators.required],
       name: ['', Validators.required],
     });
-  }
-
-  tryFacebookLogin() {
-    this.authService.doFacebookLogin()
-      .then(res => {
-        this.router.navigate(['/app']);
-      }, err => console.log(err)
-      );
-  }
-
-  tryTwitterLogin() {
-    this.authService.doTwitterLogin()
-      .then(res => {
-        this.router.navigate(['/app']);
-      }, err => console.log(err)
-      );
   }
 
   tryGoogleLogin() {

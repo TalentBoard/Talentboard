@@ -8,34 +8,6 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth) { }
 
-  doFacebookLogin() {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
-  }
-
-  doTwitterLogin() {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.TwitterAuthProvider();
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
-  }
-
   doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       const provider = new firebase.auth.GoogleAuthProvider();

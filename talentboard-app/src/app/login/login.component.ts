@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../core/auth.service';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-page-login',
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
 
@@ -25,20 +25,6 @@ export class LoginComponent {
     this.loginForm = this.fb.group({
       email: ['', Validators.required ],
       password: ['', Validators.required]
-    });
-  }
-
-  tryFacebookLogin() {
-    this.authService.doFacebookLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
-    });
-  }
-
-  tryTwitterLogin() {
-    this.authService.doTwitterLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
     });
   }
 

@@ -6,10 +6,11 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/User';
 
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
 
@@ -36,15 +37,15 @@ export class NavBarComponent implements OnInit {
 
   createForm(name) {
     this.profileForm = this.fb.group({
-      name: [name, Validators.required ]
+      name: [name, Validators.required]
     });
   }
 
   save(value) {
     this.userService.updateCurrentUser(value)
-    .then(res => {
-      console.log(res);
-    }, err => console.log(err));
+      .then(res => {
+        console.log(res);
+      }, err => console.log(err));
   }
 
   logout() {
@@ -55,5 +56,4 @@ export class NavBarComponent implements OnInit {
       console.log('Logout error', error);
     });
   }
-
 }

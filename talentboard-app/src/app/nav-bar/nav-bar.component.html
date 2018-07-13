@@ -3,23 +3,17 @@
     <app-side-nav></app-side-nav>
   </sui-sidebar>
   <sui-sidebar-sibling [isDimmedWhenVisible]="true">
-
     <div class="ui borderless top attached demo menu light-theme-color-bg">
-
       <a class="item icon-menu" (click)="sidebar.toggle()">
         <i class="sidebar icon"></i>
       </a>
-
       <a class="item">
         <input type="text" name="search" placeholder="Search..">
       </a>
-
       <div class="right menu">
-
         <a class="item">
           <i class="bell icon icon-items"></i>
         </a>
-
         <div class="ui simple dropdown link item" suiDropdown>
           <span class="text">
             <img class="ui avatar image" [src]="user.profileURL"> &nbsp;{{user.name}}
@@ -29,17 +23,12 @@
             <h2 class="ui header">
               <img [src]="user.profileURL" class="ui image"> {{user.name}}
             </h2>
-
             <div class="item">Account Settings</div>
-            <div class="item"  (click)="logout()" style="color: #e24f4f !important;">Sign out</div>
+            <div class="item" (click)="logout()" style="color: #e24f4f !important;">Sign out</div>
           </div>
         </div>
-
       </div>
     </div>
-
-    <app-job-view></app-job-view>
-    <app-kanban-board></app-kanban-board>
-
+    <app-job></app-job>
   </sui-sidebar-sibling>
 </sui-sidebar-container>

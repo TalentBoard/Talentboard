@@ -1,0 +1,15 @@
+.job-title {
+  font-size: 24px;
+  padding-top: 5px;
+}
+
+.job-status-icon {
+  font-size: 15px;
+  position:relative;
+  bottom:2px;
+}
+
+.job-edit-icon {
+  font-size: 20px;
+  padding-left: 5px;
+}

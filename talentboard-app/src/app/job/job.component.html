@@ -2,14 +2,14 @@
   <div class="ui two column grid">
     <div class="column">
       <div class="job-title">
-        <i class="circle icon job-status-icon green" [ngStyle]="{'color': currentJob.isOpen === true ? 'green' : 'red' }"></i>
+        <i class="circle icon job-status-icon"></i>
         {{ currentJob.title }}
         <i class="edit basic icon job-edit-icon"></i>
       </div>
     </div>
 
     <div class="column">
-      <button class="ui button right floated" (click)="openAddJobModal()">
+      <button class="ui button right floated">
         <i class="plus icon"></i>Add Job
       </button>
 
@@ -17,11 +17,18 @@
         <div class="text">Select Job</div>
         <i class="dropdown icon"></i>
         <div class="menu" suiDropdownMenu>
-          <div class="item" *ngFor="let job of jobList">{{ job.title }}</div>
+          <div class="item">Job</div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="ui fluid grid container">
+  <app-column class="four wide column" [name]='"Applied"' [applicants]="applied"></app-column>
+  <app-column class="four wide column" [name]='"Interviewed"' [applicants]="interview" ></app-column>
+  <app-column class="four wide column" [name]='"Declined"' [applicants]="declined" ></app-column>
+  <app-column class="four wide column" [name]='"Sent Offer"' [applicants]="offer"></app-column>
 </div>
 
 <ng-template let-context let-modal="modal" #modalTemplate>
@@ -47,7 +54,7 @@
         <label for="salary">Salary</label>
         <div class="ui labeled input">
           <div class="ui label">$</div>
-          <input type="text" id="salary" required [(ngModel)]="newJob.salary" name="salary">
+          <input type="text" id="salary" required [(ngModel)]="newJob.salary" name="salary" value="{{ context.job.salary }}">
         </div>
       </div>
     </form>

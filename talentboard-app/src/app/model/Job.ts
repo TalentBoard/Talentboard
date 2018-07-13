@@ -4,7 +4,7 @@ export class Job {
   public description: string;
   public location: string;
   public salary: string;
-  public applicantIds: string;
+  public applicantIds: Array<string>;
   public isOpen: boolean;
 
   constructor() {

@@ -20,19 +20,14 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SuiModule, SuiDropdownModule } from 'ng2-semantic-ui';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
-import { JobViewComponent } from './job-view/job-view.component';
 import { AppResolver } from './nav-bar/nav-bar.resolver';
 import { ColumnComponent } from './column/column.component';
 import { ApplicantComponent } from './applicant/applicant.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
-import { JobFormComponent } from './job-form/job-form.component';
 
-import { FormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { ApplicantFormComponent } from './applicant-form/applicant-form.component';
-import { RegisterAddInfoComponent } from './register-add-info/register-add-info.component';
+import { JobComponent } from './job/job.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +36,9 @@ import { RegisterAddInfoComponent } from './register-add-info/register-add-info.
     RegisterComponent,
     NavBarComponent,
     SideNavComponent,
-    KanbanBoardComponent,
-    JobViewComponent,
     ColumnComponent,
     ApplicantComponent,
-    JobFormComponent,
-    ApplicantFormComponent,
-    RegisterAddInfoComponent
+    JobComponent,
   ],
   imports: [
     BrowserModule,

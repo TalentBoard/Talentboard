@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KanbanBoardComponent } from './kanban-board.component';
+import { JobComponent } from './job.component';
 
-describe('KanbanBoardComponent', () => {
-  let component: KanbanBoardComponent;
-  let fixture: ComponentFixture<KanbanBoardComponent>;
+describe('JobComponent', () => {
+  let component: JobComponent;
+  let fixture: ComponentFixture<JobComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ KanbanBoardComponent ]
+      declarations: [ JobComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KanbanBoardComponent);
+    fixture = TestBed.createComponent(JobComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

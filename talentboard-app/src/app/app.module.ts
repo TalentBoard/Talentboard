@@ -31,6 +31,7 @@ import { JobFormComponent } from './job-form/job-form.component';
 import { FormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ApplicantFormComponent } from './applicant-form/applicant-form.component';
+import { RegisterAddInfoComponent } from './register-add-info/register-add-info.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ApplicantFormComponent } from './applicant-form/applicant-form.componen
     ColumnComponent,
     ApplicantComponent,
     JobFormComponent,
-    ApplicantFormComponent
+    ApplicantFormComponent,
+    RegisterAddInfoComponent
   ],
   imports: [
     BrowserModule,

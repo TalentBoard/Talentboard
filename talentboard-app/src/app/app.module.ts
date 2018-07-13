@@ -48,7 +48,7 @@ import { JobComponent } from './job/job.component';
     FormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     DndModule.forRoot(),
     FormsModule,

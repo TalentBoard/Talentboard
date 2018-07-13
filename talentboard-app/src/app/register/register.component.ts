@@ -29,7 +29,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
-      name: ['', Validators.required],
+      username: ['', Validators.required],
     });
   }
 
@@ -42,21 +42,15 @@ export class RegisterComponent {
   }
 
   tryRegister(value) {
-
-    this.authService.doRegister(value);
-    this.authService.doLogin(value).then(res_1 => {
-        this.errorMessage = '';
-        this.successMessage = 'Your account has been created';
-        const res = firebase.auth().currentUser;
-        res.updateProfile({
-          displayName: value.username,
-          photoURL: res.photoURL
-        }).then(res_2 => {
-          this.router.navigate(['/app']);
-        });
-      }, err => {
-        this.errorMessage = err.message;
-        this.successMessage = '';
-      });
+    this.authService.doRegister(value).then( val => {
+      this.authService.doLogin(value);
+    });
+    const res = firebase.auth().currentUser;
+    res.updateProfile({
+      displayName: value.username,
+      photoURL: res.photoURL
+    }).then(res_2 => {
+      this.router.navigate(['/app']);
+    });
   }
 }

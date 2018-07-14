@@ -49,15 +49,6 @@ export class UserService {
   updateCurrentUser(value) {
     return new Promise((resolve, reject) => {
       const res = firebase.auth().currentUser;
-      // const user = new User();
-      // user.id = res.uid;
-      // user.profileURL = value.photoURL;
-      // user.name = value.username;
-      // user.provider = res.providerData[0].providerId;
-      // user.email = res.email;
-      // user.workplace = value.workplace;
-      // user.title = value.title;
-      // this.addUser(user);
       res.updateProfile({
         displayName: value.name,
         photoURL: res.photoURL

@@ -42,9 +42,10 @@ export class RegisterComponent {
   }
 
   tryRegister(value) {
-    this.authService.doRegister(value).then( val => {
+    this.authService.doRegister(value).then(val => {
       this.authService.doLogin(value);
     });
+    this.authService.doLogin(value);
     const res = firebase.auth().currentUser;
     res.updateProfile({
       displayName: value.username,

@@ -34,6 +34,14 @@ export class UserService {
     this.db.list<User>('users').set(id, updatedUser);
   }
 
+  getCurrentUser_db(): Observable<User> {
+    let id;
+    this.getCurrentUser().then( res => {
+      id = res.uid;
+    });
+    return this.getUserById(id);
+  }
+
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().onAuthStateChanged((value) => {

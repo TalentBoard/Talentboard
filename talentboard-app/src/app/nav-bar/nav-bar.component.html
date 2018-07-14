@@ -23,7 +23,7 @@
             <h2 class="ui header">
               <img [src]="user.profileURL" class="ui image"> {{user.name}}
             </h2>
-            <div class="item">Account Settings</div>
+            <div class="item" (click)="accountSettingsModal('Account Settings', currentUser)">Account Settings</div>
             <div class="item" (click)="logout()" style="color: #e24f4f !important;">Sign out</div>
           </div>
         </div>
@@ -32,3 +32,23 @@
     <app-job></app-job>
   </sui-sidebar-sibling>
 </sui-sidebar-container>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">{{ context.titleModal }}</div>
+  <div class="content">
+    <form class="ui form">
+      <div class="field">
+        <label for="title">Username</label>
+        <input type="text" id="name" required [(ngModel)]="context.user.name" name="name">
+      </div>
+      <!--<div class="field">
+        <label for="description">Email</label>
+        <textarea id="description" rows="8" required [(ngModel)]="context.user.email" name="email"></textarea>
+      </div>-->
+    </form>
+  </div>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.deny()">Cancel</button>
+    <button class="ui green button" (click)="modal.approve()" autofocus>OK</button>
+  </div>
+</ng-template>

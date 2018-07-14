@@ -59,3 +59,4 @@ export class JobComponent implements OnInit {
       .onDeny(_ => {});
   }
 }
+

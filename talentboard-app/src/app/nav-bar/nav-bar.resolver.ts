@@ -17,7 +17,7 @@ export class AppResolver implements Resolve<User> {
           if (res.providerData[0].providerId === 'password') {
             user.id = res.uid;
             user.profileURL = 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png';
-            //'http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png';
+            // 'http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png';
             user.email = res.email;
             user.name = res.displayName;
             user.provider = res.providerData[0].providerId;

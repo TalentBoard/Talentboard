@@ -1,6 +1,10 @@
+#jobContainer {
+  padding-left: 6em;
+  padding-right: 6em;
+}
+
 .job-title {
   font-size: 24px;
-  padding-top: 5px;
 }
 
 .job-status-icon {
@@ -12,4 +16,8 @@
 .job-edit-icon {
   font-size: 20px;
   padding-left: 5px;
+}
+
+.ui.grid.equal.width.column {
+  padding-bottom: 1em;
 }

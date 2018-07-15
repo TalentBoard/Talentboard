@@ -24,14 +24,24 @@
   </div>
 </div>
 
-<div class="ui fluid grid container">
-  <app-column class="four wide column" [name]='"Applied"' [applicants]="applied"></app-column>
-  <app-column class="four wide column" [name]='"Interviewed"' [applicants]="interview" ></app-column>
-  <app-column class="four wide column" [name]='"Declined"' [applicants]="declined" ></app-column>
-  <app-column class="four wide column" [name]='"Sent Offer"' [applicants]="offer"></app-column>
+<div id="jobContainer" class="ui fluid container">
+  <div class="ui four column equal width stackable grid">
+    <div class="column">
+      <app-column [name]='"Applied"' [applicants]="applied"></app-column>
+    </div>
+    <div class="column">
+      <app-column [name]='"Interviewed"' [applicants]="interview"></app-column>
+    </div>
+    <div class="column">
+      <app-column [name]='"Declined"' [applicants]="declined"></app-column>
+    </div>
+    <div class="column">
+      <app-column [name]='"Sent Offer"' [applicants]="offer"></app-column>
+    </div>
+  </div>
 </div>
 
-<ng-template let-context let-modal="modal" #modalTemplate>
+<ng-template let-context let-modal="modal" #jobModal>
   <div class="header">{{ context.title }}</div>
   <div class="content">
     <form class="ui form">

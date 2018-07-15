@@ -16,14 +16,14 @@
         </a>
         <div class="ui simple dropdown link item" suiDropdown>
           <span class="text">
-            <img class="ui avatar image" [src]="user.profileURL"> &nbsp;{{user.name}}
+            <img class="ui avatar image" [src]="user.profileURL"> {{user.name}}
           </span>
-          <i class="dropdown icon" style="color: black;"></i>
+          <i class="dropdown icon black"></i>
           <div class="menu" suiDropdownMenu>
             <h2 class="ui header">
               <img [src]="user.profileURL" class="ui image"> {{user.name}}
             </h2>
-            <div class="item" (click)="accountSettingsModal('Account Settings', currentUser)">Account Settings</div>
+            <div class="item" (click)="accountSettingsModal('Account Settings', user)">Account Settings</div>
             <div class="item" (click)="logout()" style="color: #e24f4f !important;">Sign out</div>
           </div>
         </div>
@@ -38,7 +38,7 @@
   <div class="content">
     <form class="ui form">
       <div class="field">
-        <label for="title">Username</label>
+        <label for="name">Username</label>
         <input type="text" id="name" required [(ngModel)]="context.user.name" name="name">
       </div>
       <!--<div class="field">

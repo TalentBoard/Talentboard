@@ -4,7 +4,7 @@ import { Applicant } from '../model/Applicant';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { JobService } from '../core/job.service';
 
-export interface IModalContext {
+export interface IContext {
   title: string;
   job: Job;
 }
@@ -17,8 +17,25 @@ export interface IModalContext {
 export class JobComponent implements OnInit {
 
   currentJob: Job = new Job();
-  applied: Array<Applicant> = [];
-  interview: Array<Applicant> = [];
+  applied: Array<Applicant> = [
+    // new Applicant('Hamza', 'h@g.com'),
+    // new Applicant('Amar', 'h@g.com'),
+    // new Applicant('Saheed', 'h@g.com'),
+    // new Applicant('John', 'h@g.com'),
+    // new Applicant('John', 'h@g.com')
+  ];
+  interview: Array<Applicant> = [
+    // new Applicant('Hamza', 'h@g.com'),
+    // new Applicant('Amar', 'h@g.com'),
+    // new Applicant('Saheed', 'h@g.com'),
+    // new Applicant('John', 'h@g.com'),
+    // new Applicant('John', 'h@g.com'),
+    // new Applicant('Hamza', 'h@g.com'),
+    // new Applicant('Amar', 'h@g.com'),
+    // new Applicant('Saheed', 'h@g.com'),
+    // new Applicant('John', 'h@g.com'),
+    // new Applicant('John', 'h@g.com')
+  ];
   declined: Array<Applicant> = [];
   offer: Array<Applicant> = [];
 
@@ -31,8 +48,8 @@ export class JobComponent implements OnInit {
     'Vancouver, BC',
   ];
 
-  @ViewChild('modalTemplate')
-  public modalTemplate: ModalTemplate<IModalContext, void, void>;
+  @ViewChild('jobModal')
+  public jobModal: ModalTemplate<IContext, void, void>;
   public newJob: Job = new Job();
 
   constructor(public modalService: SuiModalService, public jobService: JobService) { }
@@ -40,7 +57,7 @@ export class JobComponent implements OnInit {
   ngOnInit() { }
 
   openJobModal(title: string, job: Job) {
-    const config = new TemplateModalConfig<IModalContext, void, void>(this.modalTemplate);
+    const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
     config.isClosable = false;
     config.size = 'small';
     config.transition = 'fade up';
@@ -56,7 +73,7 @@ export class JobComponent implements OnInit {
           this.jobService.addJob(this.newJob);
         }
       })
-      .onDeny(_ => {});
+      .onDeny(_ => { });
   }
 }
 

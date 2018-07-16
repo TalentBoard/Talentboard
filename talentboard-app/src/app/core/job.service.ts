@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class JobService {
-  currentJob:Job;
+  currentJob: Job;
   jobs: Observable<Job[]>;
 
   constructor(private db: AngularFireDatabase) {

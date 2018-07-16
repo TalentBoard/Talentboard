@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SuiModule, SuiDropdownModule } from 'ng2-semantic-ui';
-import { SideNavComponent } from './side-nav/side-nav.component';
 import { AppResolver } from './nav-bar/nav-bar.resolver';
 import { ColumnComponent } from './column/column.component';
 import { ApplicantComponent } from './applicant/applicant.component';
@@ -28,6 +27,9 @@ import { DndModule } from 'ng2-dnd';
 
 import { ToastrModule } from 'ngx-toastr';
 import { JobComponent } from './job/job.component';
+import { ApplicantListComponent } from './applicant-list/applicant-list.component';
+import { JobListComponent } from './job-list/job-list.component';
+import { JobListItemComponent } from './job-list-item/job-list-item.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +37,12 @@ import { JobComponent } from './job/job.component';
     LoginComponent,
     RegisterComponent,
     NavBarComponent,
-    SideNavComponent,
     ColumnComponent,
     ApplicantComponent,
     JobComponent,
+    ApplicantListComponent,
+    JobListComponent,
+    JobListItemComponent,
   ],
   imports: [
     BrowserModule,

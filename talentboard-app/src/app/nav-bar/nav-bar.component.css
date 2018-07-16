@@ -41,6 +41,12 @@
   color: white;
 }
 
+.logo {
+  position: relative;
+  height: 26px !important;
+  width: 160px !important;
+}
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #C4C5C3;
   opacity: 1; /* Firefox */

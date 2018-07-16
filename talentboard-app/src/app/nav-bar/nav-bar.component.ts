@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
 
   user: User = new User();
   profileForm: FormGroup;
+  currentViewState: String;
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IModalContext, void, void>;
@@ -36,6 +37,7 @@ export class NavBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentViewState = 'kanban';
     this.route.data.subscribe(routeData => {
       const data = routeData['data'];
       if (data) {
@@ -43,6 +45,14 @@ export class NavBarComponent implements OnInit {
         this.createForm(this.user.name);
       }
     });
+  }
+
+  updateCurrentView(state) {
+    this.currentViewState = state;
+  }
+
+  getCurrentView() {
+    return this.currentViewState;
   }
 
   createForm(name) {

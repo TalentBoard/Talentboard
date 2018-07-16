@@ -1,18 +1,12 @@
 #container-log-in{
   width: 400px;
   height: 500px;
-
   position: absolute;
-  top:0;
-  bottom: 0;
+  margin: auto;
+  top: 0;
   left: 0;
   right: 0;
-
-  margin: auto;
-}
-
-.row{
-  margin-top: 10px;
+  bottom: 0;
 }
 
 .button-login {
@@ -25,9 +19,5 @@
 
 #log-in-service {
   margin-top: 4px !important;
-}
-
-.error{
-  color: red;
 }
 

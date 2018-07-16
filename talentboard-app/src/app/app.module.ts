@@ -15,14 +15,13 @@ import { JobService } from './core/job.service';
 import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { AuthService2 } from './core/auth2.service';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SuiModule, SuiDropdownModule } from 'ng2-semantic-ui';
-import { AppResolver } from './nav-bar/nav-bar.resolver';
 import { ColumnComponent } from './column/column.component';
 import { ApplicantComponent } from './applicant/applicant.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -48,7 +47,7 @@ import { JobListComponent } from './job-list/job-list.component';
     SuiDropdownModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: true }),
+    RouterModule.forRoot(rootRouterConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -58,12 +57,11 @@ import { JobListComponent } from './job-list/job-list.component';
   ],
   providers: [
     AuthService,
+    AuthService2,
     UserService,
     JobService,
     ApplicantService,
     AuthGuard,
-    AppResolver,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

@@ -46,8 +46,5 @@ export class ApplicantService {
       const q = ref.orderByChild('status').equalTo(status);
       return q;
     });
-
-
-
   }
 }

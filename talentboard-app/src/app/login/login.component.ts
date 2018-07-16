@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService2 } from '../core/auth2.service';
 
 @Component({
   selector: 'app-page-login',
@@ -10,40 +9,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-  loginForm: FormGroup;
-  errorMessage = '';
+  credentials = {
+    email: '',
+    password: ''
+  };
 
-  constructor(
-    public authService: AuthService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {
-    this.createForm();
+  constructor(public authService: AuthService2, private router: Router) { }
+
+  googleLogin() {
+    this.authService.googleLogin();
+    // localStorage.setItem('user', 'timbo');
   }
 
-  createForm() {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required ],
-      password: ['', Validators.required]
-    });
-  }
-
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
-    });
-  }
-
-  tryLogin(value) {
-    this.authService.doLogin(value)
-    .then(res => {
-      this.router.navigate(['/app']);
-    }, err => {
-      console.log(err);
-      this.errorMessage = err.message;
-    });
-  }
+  // tryLogin(value) {
+  //   this.authService.doLogin(value)
+  //     .then(res => {
+  //       this.router.navigate(['/app']);
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  // }
 
   register() {
     this.router.navigate(['/register']);

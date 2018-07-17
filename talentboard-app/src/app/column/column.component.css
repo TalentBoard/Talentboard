@@ -2,11 +2,25 @@
   background-color:#f3f3f3;
   height: 100%;
   width: 300px !important;
-  overflow-y: scroll !important;
-  margin-left: 10px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+
+.job-column {
+  margin-right: 5px;
+  vertical-align: top;
+  overflow: auto;
+  width: 100%;
+  height: 94%;
+  white-space: nowrap;
+  margin-right: 2px;
+  margin-left: 1px;
 }
 
 .column-title {
   font-size: 15px;
   color: #4C555C;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }

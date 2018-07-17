@@ -1,8 +1,11 @@
 <div id="column" class="ui segment" dnd-droppable (onDropSuccess)="addItem($event)">
-  <h3 class="column-title">
+  <div class="content column-title">
+          {{name}}
+  </div>
 
-    {{name}}
-  </h3>
-  <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true" [dragData]="applicant"
-    (onDragSuccess)="removeItem($event)"></app-applicant>
+  <div class="job-column">
+    <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true" [dragData]="applicant"
+      (onDragSuccess)="removeItem($event)"></app-applicant>
+  </div>
+
 </div>

@@ -24,7 +24,6 @@ export class JobComponent implements OnInit {
   personInterview: Array<Applicant> = [];
   declined: Array<Applicant> = [];
   offer: Array<Applicant> = [];
-
   locations = [
     'Calgary, AB',
     'Halifax, NS',

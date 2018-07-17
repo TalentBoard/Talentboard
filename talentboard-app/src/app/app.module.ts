@@ -5,6 +5,7 @@ import { rootRouterConfig } from './app.routes';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +16,7 @@ import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth.service';
+import { StorageService } from './core/storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -28,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { JobComponent } from './job/job.component';
 import { ApplicantListComponent } from './applicant-list/applicant-list.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { TempApplyComponent } from './temp-apply/temp-apply.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { JobListComponent } from './job-list/job-list.component';
     JobComponent,
     ApplicantListComponent,
     JobListComponent,
+    TempApplyComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import { JobListComponent } from './job-list/job-list.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     DndModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot()
@@ -62,6 +67,7 @@ import { JobListComponent } from './job-list/job-list.component';
     JobService,
     ApplicantService,
     AuthGuard,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

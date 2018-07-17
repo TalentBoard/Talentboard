@@ -70,10 +70,11 @@ export class JobComponent implements OnInit {
   }
 
   changeCurrentJob(id: string) {
-    const job = this.jobList.filter((value) => {
+    const job = this.jobList.find((value) => {
       return value.id === id;
     });
-    this.currentJob = job[0];
+    console.log(job);
+    this.currentJob = job;
   }
 }
 

@@ -33,4 +33,27 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/app']);
     });
   }
+
+  googleLogin() {
+    this.authService.googleLogin().then(res => {
+      const currentUser: User = new User();
+      const fbUser = res.user;
+
+      if (res.additionalUserInfo.isNewUser) {
+        currentUser.id = fbUser.uid;
+        currentUser.name = fbUser.displayName;
+        currentUser.email = fbUser.email;
+        currentUser.profileURL = fbUser.photoURL;
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.userService.createUser(currentUser);
+        this.router.navigate(['/app']);
+      } else {
+        this.userService.getUserById(fbUser.uid).subscribe(user => {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['/app']);
+        });
+      }
+    }, err => {
+    });
+  }
 }

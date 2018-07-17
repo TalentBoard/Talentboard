@@ -1,5 +1,6 @@
 <div id="column" class="ui segment" dnd-droppable (onDropSuccess)="addItem($event)">
-  <h3 class="ui header">
+  <h3 class="column-title">
+
     {{name}}
   </h3>
   <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true" [dragData]="applicant"

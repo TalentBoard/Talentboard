@@ -1,16 +1,18 @@
 <div class="ui card applicant-card" dnd-draggable>
   <div class="content">
-    <div class="header">{{ applicant.name }}</div>
+    <div class="applicant-name">
+      {{ applicant.name }}
+    </div>
     <div class="meta">
       <span class="category">{{ applicant.email }}</span>
     </div>
-    <div class="extra content">
-      <span class="right floated">
-        <i class="star icon" [ngClass]="{'active': isFavourite()}"></i>
-      </span>
-      <div class="left floated author" *ngIf="applicant.assignedUserId != ''">
-        <img class="ui avatar image" src="{{getAssignedUser().profileURL}}"> {{getAssignedUser().name}}
-      </div>
+  </div>
+  <div class="extra content">
+    <span class="right floated">
+      <i class="star icon" [ngClass]="{'active': isFavourite()}"></i>
+    </span>
+    <div class="left floated author" *ngIf="applicant.assignedUserId != ''">
+      <img class="ui avatar image" src="{{getAssignedUser().profileURL}}"> {{getAssignedUser().name}}
     </div>
   </div>
 </div>

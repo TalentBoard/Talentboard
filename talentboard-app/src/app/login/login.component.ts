@@ -1,51 +1,85 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../core/auth.service';
+import { User } from '../model/User';
+import { UserService } from '../core/user.service';
+import { ToastrService } from '../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'app-page-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
-  loginForm: FormGroup;
-  errorMessage = '';
+  credentials = {
+    email: '',
+    password: ''
+  };
 
-  constructor(
-    public authService: AuthService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {
-    this.createForm();
-  }
+  constructor(private authService: AuthService, private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
-  createForm() {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required ],
-      password: ['', Validators.required]
-    });
-  }
+  googleLogin() {
+    this.authService.googleLogin().then(res => {
+      const currentUser: User = new User();
+      const fbUser = res.user;
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then(res => {
-      this.router.navigate(['/app']);
-    });
-  }
-
-  tryLogin(value) {
-    this.authService.doLogin(value)
-    .then(res => {
-      this.router.navigate(['/app']);
+      if (res.additionalUserInfo.isNewUser) {
+        currentUser.id = fbUser.uid;
+        currentUser.name = fbUser.displayName;
+        currentUser.email = fbUser.email;
+        currentUser.profileURL = fbUser.photoURL;
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.userService.createUser(currentUser);
+        this.router.navigate(['/app']);
+      } else {
+        this.userService.getUserById(fbUser.uid).subscribe(user => {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['/app']);
+        });
+      }
     }, err => {
-      console.log(err);
-      this.errorMessage = err.message;
+      this.handleError(err.code);
     });
   }
 
-  register() {
-    this.router.navigate(['/register']);
+  emailLogin() {
+    this.authService.emailLogin(this.credentials.email, this.credentials.password).then(res => {
+      const userId = res.user.uid;
+      this.userService.getUserById(userId).subscribe(user => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/app']);
+      });
+    }, err => {
+      this.handleError(err.code);
+    });
+  }
+
+  handleError(errorCode: string) {
+    if (this.credentials.email === '' || this.credentials.password === '') {
+      this.toastr.error('Must provide both email and password', 'Error');
+      return;
+    }
+    switch (errorCode) {
+      case 'auth/invalid-email': {
+        this.toastr.error('Invalid email format', 'Error');
+        break;
+      }
+      case 'auth/user-not-found': {
+        this.toastr.error('User does not exist', 'Error');
+        break;
+      }
+      case 'auth/wrong-password': {
+        this.toastr.error('Incorrect email or password', 'Error');
+        break;
+      }
+      case 'auth/network-request-failed': {
+        this.toastr.error('No network connection', 'Error');
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   }
 }

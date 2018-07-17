@@ -1,31 +1,23 @@
 <div class="ui container" id="container-log-in">
-  <a href="/">
-    <img class="ui centered medium image" src="../../assets/images/logo-plain-black.svg">
-  </a>
-  <div class="ui basic segment" style="padding: 1em; margin-top:25px;">
+  <img class="ui centered medium image" src="../../assets/images/logo-plain-black.svg">
+  <div class="ui basic segment">
     <div class="content">
-      <form [formGroup]="loginForm">
-        <div class="ui left icon input fluid" id="input-login">
-          <input type="email" formControlName="email" placeholder="E-mail address">
-          <i class="left user icon"></i>
+      <form class="ui form" (ngSubmit)="emailLogin()">
+        <div class="ui left icon input fluid">
+          <input type="email" [(ngModel)]="credentials.email" placeholder="Email address" name="email">
+          <i class="user icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-login">
+          <input type="password" [(ngModel)]="credentials.password" placeholder="Password" name="password">
           <i class="lock icon"></i>
-          <input type="password" formControlName="password" placeholder="Password">
-
         </div>
-        <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
-        <div class="center aligned">
-          <div class="ui fluid buttons">
-            <button type="submit" (click)="tryLogin(loginForm.value)" class="ui button instagram button-login">Login</button>
-          </div>
-          <div class="ui horizontal divider">
-            Or
-          </div>
-        </div>
+        <button type="submit" class="ui fluid button blue button-login">Login</button>
       </form>
+      <div class="ui horizontal divider">
+        Or
+      </div>
     </div>
-    <button type="button" class="ui fluid black button" (click)="tryGoogleLogin()" id="log-in-service">
+    <button type="button" class="ui fluid black button" (click)="googleLogin()" id="log-in-service">
       <i class="google icon"></i>
       Login with Gmail
     </button>

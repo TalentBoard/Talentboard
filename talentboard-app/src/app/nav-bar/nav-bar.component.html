@@ -5,15 +5,15 @@
         <img src="../../assets/images/logo-plain.svg" class="logo">
       </div>
     </a>
-    <a (click)="updateCurrentView('kanban'); sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'kanban'; sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="columns icon"></i> Board</b>
     </a>
-    <a (click)="updateCurrentView('job-list');sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'job-list';sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="briefcase icon"></i> Positions</b>
     </a>
-    <a (click)="updateCurrentView('applicant-list');sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'applicant-list'; sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="address card icon"></i> Applicants</b>
     </a>
@@ -33,22 +33,22 @@
         </a>
         <div class="ui simple dropdown link item" suiDropdown>
           <span class="text">
-            <img class="ui avatar image" [src]="user.profileURL"> {{user.name}}
+            <img class="ui avatar image" [src]="currentUser.profileURL"> {{currentUser.name}}
           </span>
           <i class="dropdown icon black"></i>
           <div class="menu" suiDropdownMenu>
             <h2 class="ui header">
-              <img [src]="user.profileURL" class="ui image"> {{user.name}}
+              <img [src]="currentUser.profileURL" class="ui image"> {{currentUser.name}}
             </h2>
-            <div class="item" (click)="accountSettingsModal('Account Settings', user)">Account Settings</div>
+            <div class="item" (click)="accountSettingsModal('Account Settings', currentUser)">Account Settings</div>
             <div class="item" (click)="logout()" style="color: #e24f4f !important;">Sign out</div>
           </div>
         </div>
       </div>
     </div>
-    <app-job *ngIf="getCurrentView()=='kanban';"></app-job>
-    <app-applicant-list *ngIf="getCurrentView()=='applicant-list';"></app-applicant-list>
-    <app-job-list *ngIf="getCurrentView()=='job-list';"></app-job-list>
+    <app-job *ngIf="currentViewState === 'kanban'"></app-job>
+    <app-applicant-list *ngIf="currentViewState === 'applicant-list';"></app-applicant-list>
+    <app-job-list *ngIf=" currentViewState ==='job-list';"></app-job-list>
 
   </sui-sidebar-sibling>
 </sui-sidebar-container>
@@ -61,10 +61,6 @@
         <label for="name">Username</label>
         <input type="text" id="name" required [(ngModel)]="context.user.name" name="name">
       </div>
-      <!--<div class="field">
-        <label for="description">Email</label>
-        <textarea id="description" rows="8" required [(ngModel)]="context.user.email" name="email"></textarea>
-      </div>-->
     </form>
   </div>
   <div class="actions">

@@ -2,9 +2,8 @@ export class User {
   id: string;
   name: string;
   email: string;
-  provider: string;
-  workplace: string;
   title: string;
+  company: string;
   jobIds: Array<string>;
   profileURL: string;
 
@@ -12,9 +11,6 @@ export class User {
     this.id = '';
     this.name = '';
     this.email = '';
-    this.provider = '';
-    this.workplace = '';
-    this.title = '';
     this.jobIds = [];
     this.profileURL = '';
   }

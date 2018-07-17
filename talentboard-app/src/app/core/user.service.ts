@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../model/User';
 
@@ -10,7 +9,7 @@ export class UserService {
 
   users: Observable<User[]>;
 
-  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {
+  constructor(public db: AngularFireDatabase) {
     this.users = db.list<User>('users').valueChanges();
   }
 
@@ -18,12 +17,8 @@ export class UserService {
     return this.users;
   }
 
-  addUser(user: User) {
-    if (this.getUserById(user.id) == null) {
-      this.db.list<User>('users').push(user);
-    } else {
-      this.updateUser(user.id, user);
-    }
+  createUser(user: User) {
+    this.db.list<User>('users').set(user.id, user);
   }
 
   getUserById(id: string): Observable<User> {
@@ -33,37 +28,4 @@ export class UserService {
   updateUser(id: string, updatedUser: User) {
     this.db.list<User>('users').set(id, updatedUser);
   }
-
-  getCurrentUser_db(): Observable<User> {
-    let id;
-    this.getCurrentUser().then( res => {
-      id = res.uid;
-    });
-    return this.getUserById(id);
-  }
-
-  getCurrentUser() {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().onAuthStateChanged((value) => {
-        if (value) {
-          resolve(value);
-        } else {
-          reject('No user logged in');
-        }
-      });
-    });
-  }
-
-  updateCurrentUser(value) {
-    return new Promise((resolve, reject) => {
-      const res = firebase.auth().currentUser;
-      res.updateProfile({
-        displayName: value.name,
-        photoURL: res.photoURL
-      }).then(res_ => {
-        resolve();
-      }, err => reject(err));
-    });
-  }
-
 }

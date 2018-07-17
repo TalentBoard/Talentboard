@@ -1,4 +1,4 @@
-<div class="ui card applicant-card" dnd-draggable>
+<div class="ui card applicant-card" dnd-draggable (click)="openProfileModal()">
   <div class="content">
     <div class="applicant-name">
       {{ applicant.name }}
@@ -11,8 +11,59 @@
     <span class="right floated">
       <i class="star icon" [ngClass]="{'active': isFavourite()}"></i>
     </span>
-    <div class="left floated author" *ngIf="applicant.assignedUserId != ''">
-      <img class="ui avatar image" src="{{getAssignedUser().profileURL}}"> {{getAssignedUser().name}}
+    <div class="left floated author" *ngIf="assignedUser">
+      <img class="ui avatar image" src="{{ assignedUser.profileURL }}"> {{ assignedUser.name }}
     </div>
   </div>
 </div>
+
+<ng-template let-context let-modal="modal" #applicantModal>
+  <div class="content">
+
+    <div class="ui large header">
+      {{ applicant.name }}
+      <span class="right floated">
+        <i class="grey star icon"></i>
+      </span>
+      <div class="sub header">{{ applicant.email }}</div>
+    </div>
+
+    <div class="ui clearing divider"></div>
+    <div class="ui sub header">Status</div>
+    <sui-select [(ngModel)]="applicant.status" name="status">
+      <sui-select-option value="Applied"></sui-select-option>
+      <sui-select-option value="Phone Interview"></sui-select-option>
+      <sui-select-option value="In Person Interview"></sui-select-option>
+      <sui-select-option value="Declined"></sui-select-option>
+      <sui-select-option value="Sent Offer"></sui-select-option>
+    </sui-select>
+
+    <div class="ui sub header">Phone Number</div>
+    <span>{{ applicant.phoneNumber }}</span>
+
+    <div class="ui sub header">About</div>
+    <span>{{ applicant.about }}
+    </span>
+    <a href="">
+      <div class="ui tiny header">
+        View Resume
+        <span class="right floated">
+          <i class="external alternate icon"></i>
+        </span>
+      </div>
+    </a>
+    <a href="">
+      <div class="ui tiny header">
+        View Cover Letter
+        <span class="right floated">
+          <i class="external alternate icon"></i>
+        </span>
+      </div>
+    </a>
+
+  </div>
+  <div class="actions">
+    <button class="ui primary button">Send Email</button>
+    <button class="ui green button" (click)="modal.approve()" autofocus>Close</button>
+  </div>
+</ng-template>

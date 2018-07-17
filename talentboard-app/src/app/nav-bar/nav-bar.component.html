@@ -5,11 +5,19 @@
         <img src="../../assets/images/logo-plain.svg" class="logo">
       </div>
     </a>
-    <a (click)="accountSettingsModal('Account Settings', user)" class="item">
-      <b>Account Settings</b>
+    <a (click)="updateCurrentView('kanban'); sidebar.toggle()" class="item">
+      <i class="chevron right icon"></i>
+      <b><i class="columns icon"></i> Board</b>
     </a>
-    <a (click)="updateCurrentView('job-list');sidebar.toggle()" class="item">Positions</a>
-    <a (click)="updateCurrentView('applicant-list');sidebar.toggle()" class="item">Applicants</a>
+    <a (click)="updateCurrentView('job-list');sidebar.toggle()" class="item">
+      <i class="chevron right icon"></i>
+      <b><i class="briefcase icon"></i> Positions</b>
+    </a>
+    <a (click)="updateCurrentView('applicant-list');sidebar.toggle()" class="item">
+      <i class="chevron right icon"></i>
+      <b><i class="address card icon"></i> Applicants</b>
+    </a>
+
   </sui-sidebar>
   <sui-sidebar-sibling [isDimmedWhenVisible]="true">
     <div class="ui borderless top attached demo menu light-theme-color-bg">

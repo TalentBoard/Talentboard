@@ -24,20 +24,21 @@
   </div>
 </div>
 
-<div id="jobContainer" class="ui fluid container">
-  <div class="ui four column equal width stackable grid">
-    <div class="column">
-      <app-column [name]='"Applied"' [applicants]="applied"></app-column>
-    </div>
-    <div class="column">
-      <app-column [name]='"Interviewed"' [applicants]="interview"></app-column>
-    </div>
-    <div class="column">
-      <app-column [name]='"Declined"' [applicants]="declined"></app-column>
-    </div>
-    <div class="column">
-      <app-column [name]='"Sent Offer"' [applicants]="offer"></app-column>
-    </div>
+<div id="jobContainer" class="ui container">
+  <div id="job-column" class="column">
+    <app-column [name]='"Applied"' [applicants]="applied"></app-column>
+  </div>
+  <div id="job-column" class="column">
+    <app-column [name]='"Interviewed (Phone)"' [applicants]="interview"></app-column>
+  </div>
+  <div id="job-column" class="column">
+    <app-column [name]='"Interviewed (In-person)"' [applicants]="interview_2"></app-column>
+  </div>
+  <div id="job-column" class="column">
+    <app-column [name]='"Declined"' [applicants]="declined"></app-column>
+  </div>
+  <div id="job-column" class="column">
+    <app-column [name]='"Sent Offer"' [applicants]="offer"></app-column>
   </div>
 </div>
 

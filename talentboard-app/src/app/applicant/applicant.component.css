@@ -1,4 +1,8 @@
 .ui.card {
-  margin-bottom: 1em;
-  background-color: #ffcdd2;
+  margin-bottom: 10px;
+  background-color: #f3f3f3;
+}
+
+.applicant-card:hover{
+  background-color: #e3e3e3;
 }

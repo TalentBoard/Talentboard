@@ -1,4 +1,7 @@
 #column {
   background-color: #EBECF0;
   height: 100%;
+  width: 300px !important;
+  overflow-y: scroll !important;
+  margin-left: 10px;
 }

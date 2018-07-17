@@ -7,12 +7,12 @@ export class Job {
   public applicantIds: Array<string>;
   public isOpen: boolean;
 
-  constructor(desiredTitle?: string, isOpenStatus?: boolean) {
-    this.title = desiredTitle || '';
+  constructor() {
+    this.title = '';
     this.description = '';
     this.location = '';
     this.salary = '';
     this.applicantIds = [];
-    this.isOpen = isOpenStatus && true;
+    this.isOpen = true;
   }
 }

@@ -17,32 +17,14 @@ export interface IContext {
 export class JobComponent implements OnInit {
 
   currentJob: Job = new Job();
-  applied: Array<Applicant> = [
-    new Applicant('Hamza', 'h@g.com'),
-    new Applicant('Amar', 'h@g.com'),
-    new Applicant('Saheed', 'h@g.com'),
-    new Applicant('John', 'h@g.com'),
-    new Applicant('John', 'h@g.com')
-  ];
-  interview: Array<Applicant> = [
-    new Applicant('Hamza', 'h@g.com'),
-    new Applicant('Amar', 'h@g.com'),
-    new Applicant('Saheed', 'h@g.com'),
-    new Applicant('John', 'h@g.com'),
-    new Applicant('John', 'h@g.com'),
-    new Applicant('Hamza', 'h@g.com')
-  ];
-  interview_2: Array<Applicant> = [
-    new Applicant('Hamza', 'h@g.com'),
-    new Applicant('Amar', 'h@g.com'),
-    new Applicant('Saheed', 'h@g.com'),
-    new Applicant('John', 'h@g.com'),
-    new Applicant('John', 'h@g.com'),
-    new Applicant('Hamza', 'h@g.com')
-  ];
+
+  jobList: Array<Job> = [];
+  applied: Array<Applicant> = [];
+  phoneInterview: Array<Applicant> = [];
+  personInterview: Array<Applicant> = [];
   declined: Array<Applicant> = [];
   offer: Array<Applicant> = [];
-  
+
   locations = [
     'Calgary, AB',
     'Halifax, NS',
@@ -56,9 +38,16 @@ export class JobComponent implements OnInit {
   public jobModal: ModalTemplate<IContext, void, void>;
   public newJob: Job = new Job();
 
-  constructor(public modalService: SuiModalService, public jobService: JobService) { }
+  constructor(private modalService: SuiModalService, private jobService: JobService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.jobService.getAllJobs().subscribe(jobs => {
+      this.jobList = jobs;
+      if (jobs[0] !== undefined && this.currentJob.id === undefined) {
+        this.currentJob = jobs[0];
+      }
+    });
+  }
 
   openJobModal(title: string, job: Job) {
     const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
@@ -75,9 +64,17 @@ export class JobComponent implements OnInit {
           this.jobService.updateJob(job.id, job);
         } else {
           this.jobService.addJob(this.newJob);
+          this.newJob = new Job();
         }
       })
       .onDeny(_ => { });
+  }
+
+  changeCurrentJob(id: string) {
+    const job = this.jobList.filter((value) => {
+      return value.id === id;
+    });
+    this.currentJob = job[0];
   }
 }
 

@@ -4,7 +4,9 @@ export class Applicant {
   public email: string;
   public phoneNumber: string;
   public status: string;
+  public about: string;
   public resumeURL: string;
+  public coverLetterURL: string;
   public favouritedUserIds: Array<string>;
   public assignedUserId: string;
 

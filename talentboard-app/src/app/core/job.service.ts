@@ -6,22 +6,19 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class JobService {
-  currentJob: Job;
   jobs: Observable<Job[]>;
 
   constructor(private db: AngularFireDatabase) {
-    this.jobs = db.list<Job>('jobs').snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ... c.payload.val() })))
-    );
+    this.jobs = this.db.list<Job>('jobs').valueChanges();
   }
 
   getAllJobs(): Observable<Job[]> {
-    this.jobs = this.db.list<Job>('jobs').valueChanges();
     return this.jobs;
   }
 
   addJob(job: Job) {
-    this.db.list<Job>('jobs').push(job);
+    job.id = this.db.createPushId();
+    this.db.list<Job>('jobs').set(job.id, job);
   }
 
   getJobById(id: string): Observable<Job> {

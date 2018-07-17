@@ -1,7 +1,12 @@
 #column {
-  background-color: #EBECF0;
+  background-color:#f3f3f3;
   height: 100%;
   width: 300px !important;
   overflow-y: scroll !important;
   margin-left: 10px;
+}
+
+.column-title {
+  font-size: 15px;
+  color: #4C555C;
 }

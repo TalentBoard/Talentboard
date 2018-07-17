@@ -1,8 +1,16 @@
 .ui.card {
   margin-bottom: 10px;
-  background-color: #f3f3f3;
+  background-color: #ffffff;
 }
 
 .applicant-card:hover{
   background-color: #e3e3e3;
 }
+
+.applicant-name {
+  font-size: 16px;
+  font-style: bold;
+  color: black !important;
+}
+
+

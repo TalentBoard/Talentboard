@@ -29,7 +29,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { JobComponent } from './job/job.component';
 import { ApplicantListComponent } from './applicant-list/applicant-list.component';
 import { JobListComponent } from './job-list/job-list.component';
-import { JobListItemComponent } from './job-list-item/job-list-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { JobListItemComponent } from './job-list-item/job-list-item.component';
     JobComponent,
     ApplicantListComponent,
     JobListComponent,
-    JobListItemComponent,
   ],
   imports: [
     BrowserModule,

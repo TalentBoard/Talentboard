@@ -18,27 +18,31 @@ export class JobComponent implements OnInit {
 
   currentJob: Job = new Job();
   applied: Array<Applicant> = [
-    // new Applicant('Hamza', 'h@g.com'),
-    // new Applicant('Amar', 'h@g.com'),
-    // new Applicant('Saheed', 'h@g.com'),
-    // new Applicant('John', 'h@g.com'),
-    // new Applicant('John', 'h@g.com')
+    new Applicant('Hamza', 'h@g.com'),
+    new Applicant('Amar', 'h@g.com'),
+    new Applicant('Saheed', 'h@g.com'),
+    new Applicant('John', 'h@g.com'),
+    new Applicant('John', 'h@g.com')
   ];
   interview: Array<Applicant> = [
-    // new Applicant('Hamza', 'h@g.com'),
-    // new Applicant('Amar', 'h@g.com'),
-    // new Applicant('Saheed', 'h@g.com'),
-    // new Applicant('John', 'h@g.com'),
-    // new Applicant('John', 'h@g.com'),
-    // new Applicant('Hamza', 'h@g.com'),
-    // new Applicant('Amar', 'h@g.com'),
-    // new Applicant('Saheed', 'h@g.com'),
-    // new Applicant('John', 'h@g.com'),
-    // new Applicant('John', 'h@g.com')
+    new Applicant('Hamza', 'h@g.com'),
+    new Applicant('Amar', 'h@g.com'),
+    new Applicant('Saheed', 'h@g.com'),
+    new Applicant('John', 'h@g.com'),
+    new Applicant('John', 'h@g.com'),
+    new Applicant('Hamza', 'h@g.com')
+  ];
+  interview_2: Array<Applicant> = [
+    new Applicant('Hamza', 'h@g.com'),
+    new Applicant('Amar', 'h@g.com'),
+    new Applicant('Saheed', 'h@g.com'),
+    new Applicant('John', 'h@g.com'),
+    new Applicant('John', 'h@g.com'),
+    new Applicant('Hamza', 'h@g.com')
   ];
   declined: Array<Applicant> = [];
   offer: Array<Applicant> = [];
-
+  
   locations = [
     'Calgary, AB',
     'Halifax, NS',

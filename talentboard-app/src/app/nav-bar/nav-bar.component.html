@@ -5,15 +5,15 @@
         <img src="../../assets/images/logo-plain.svg" class="logo">
       </div>
     </a>
-    <a (click)="updateCurrentView('kanban'); sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'kanban'; sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="columns icon"></i> Board</b>
     </a>
-    <a (click)="updateCurrentView('job-list');sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'job-list';sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="briefcase icon"></i> Positions</b>
     </a>
-    <a (click)="updateCurrentView('applicant-list');sidebar.toggle()" class="item">
+    <a (click)="currentViewState = 'applicant-list'; sidebar.toggle()" class="item">
       <i class="chevron right icon"></i>
       <b><i class="address card icon"></i> Applicants</b>
     </a>
@@ -46,9 +46,9 @@
         </div>
       </div>
     </div>
-    <app-job *ngIf="getCurrentView()=='kanban';"></app-job>
-    <app-applicant-list *ngIf="getCurrentView()=='applicant-list';"></app-applicant-list>
-    <app-job-list *ngIf="getCurrentView()=='job-list';"></app-job-list>
+    <app-job *ngIf="currentViewState === 'kanban'"></app-job>
+    <app-applicant-list *ngIf="currentViewState === 'applicant-list';"></app-applicant-list>
+    <app-job-list *ngIf=" currentViewState ==='job-list';"></app-job-list>
 
   </sui-sidebar-sibling>
 </sui-sidebar-container>

@@ -9,13 +9,12 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './core/auth.guard';
-import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { JobService } from './core/job.service';
 import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { AuthService2 } from './core/auth2.service';
+import { AuthService } from './core/auth.service';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -57,7 +56,6 @@ import { JobListComponent } from './job-list/job-list.component';
   ],
   providers: [
     AuthService,
-    AuthService2,
     UserService,
     JobService,
     ApplicantService,

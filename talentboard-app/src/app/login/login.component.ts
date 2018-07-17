@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService2 } from '../core/auth2.service';
+import { AuthService } from '../core/auth.service';
+import { User } from '../model/User';
+import { UserService } from '../core/user.service';
 
 @Component({
   selector: 'app-page-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
@@ -14,23 +16,37 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(public authService: AuthService2, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
   googleLogin() {
-    this.authService.googleLogin();
-    // localStorage.setItem('user', 'timbo');
+    this.authService.googleLogin().then(res => {
+      const currentUser: User = new User();
+      const fbUser = res.user;
+
+      if (res.additionalUserInfo.isNewUser) {
+        currentUser.id = fbUser.uid;
+        currentUser.name = fbUser.displayName;
+        currentUser.email = fbUser.email;
+        currentUser.profileURL = fbUser.photoURL;
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.userService.createUser(currentUser);
+        this.router.navigate(['/app']);
+      } else {
+        this.userService.getUserById(fbUser.uid).subscribe(user => {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['/app']);
+        });
+      }
+    });
   }
 
-  // tryLogin(value) {
-  //   this.authService.doLogin(value)
-  //     .then(res => {
-  //       this.router.navigate(['/app']);
-  //     }, err => {
-  //       console.log(err);
-  //     });
-  // }
-
-  register() {
-    this.router.navigate(['/register']);
+  emailLogin() {
+    this.authService.emailLogin(this.credentials.email, this.credentials.password).then(res => {
+      const userId = res.user.uid;
+      this.userService.getUserById(userId).subscribe(user => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/app']);
+      });
+    });
   }
 }

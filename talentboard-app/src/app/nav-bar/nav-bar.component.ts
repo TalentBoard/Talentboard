@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../core/user.service';
-import { AuthService } from '../core/auth.service';
 import { User } from '../model/User';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
-import { AuthService2 } from '../core/auth2.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
 export interface IModalContext {
   titleModal: string;
@@ -19,25 +18,30 @@ export interface IModalContext {
 export class NavBarComponent implements OnInit {
 
   currentUser: User;
+  currentViewState: string;
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IModalContext, void, void>;
 
   constructor(
     public userService: UserService,
-    public authService: AuthService2,
+    public authService: AuthService,
     public router: Router,
     public modalService: SuiModalService
   ) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    console.log(this.currentUser);
+    this.currentViewState = 'kanban';
   }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  updateCurrentView(state) {
+    this.currentViewState = state;
   }
 
   accountSettingsModal(titleModal: string, user: User) {

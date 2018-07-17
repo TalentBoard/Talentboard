@@ -1,55 +1,27 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { auth } from 'firebase';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
-  doGoogleLogin() {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        });
-    });
+  googleLogin(): Promise<auth.UserCredential> {
+    return this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
-  doRegister(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          this.doLogin(value);
-          resolve(res);
-        }, err => reject(err));
-    });
+  emailLogin(email: string, password: string): Promise<auth.UserCredential> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  doLogin(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err));
-    });
+  registerUser(email: string, password: string): Promise<auth.UserCredential> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  doLogout() {
-    return new Promise((resolve, reject) => {
-      if (firebase.auth().currentUser) {
-        this.afAuth.auth.signOut();
-        resolve();
-      }
-      reject();
-    });
+  logout() {
+    this.afAuth.auth.signOut();
+    localStorage.removeItem('user');
   }
 }

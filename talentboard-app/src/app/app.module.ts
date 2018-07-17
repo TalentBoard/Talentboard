@@ -15,6 +15,7 @@ import { ApplicantService } from './core/applicant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -42,6 +43,7 @@ import { JobListComponent } from './job-list/job-list.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SuiModule,
     SuiDropdownModule,
     ReactiveFormsModule,

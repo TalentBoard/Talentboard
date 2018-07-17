@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { User } from '../model/User';
 import { UserService } from '../core/user.service';
+import { ToastrService } from '../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'app-page-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
   googleLogin() {
     this.authService.googleLogin().then(res => {
@@ -37,6 +38,8 @@ export class LoginComponent {
           this.router.navigate(['/app']);
         });
       }
+    }, err => {
+      this.handleError(err.code);
     });
   }
 
@@ -47,6 +50,36 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/app']);
       });
+    }, err => {
+      this.handleError(err.code);
     });
+  }
+
+  handleError(errorCode: string) {
+    if (this.credentials.email === '' || this.credentials.password === '') {
+      this.toastr.error('Must provide both email and password', 'Error');
+      return;
+    }
+    switch (errorCode) {
+      case 'auth/invalid-email': {
+        this.toastr.error('Invalid email format', 'Error');
+        break;
+      }
+      case 'auth/user-not-found': {
+        this.toastr.error('User does not exist', 'Error');
+        break;
+      }
+      case 'auth/wrong-password': {
+        this.toastr.error('Incorrect email or password', 'Error');
+        break;
+      }
+      case 'auth/network-request-failed': {
+        this.toastr.error('No network connection', 'Error');
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@ import { AuthService } from '../core/auth.service';
 import { User } from '../model/User';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { AuthService2 } from '../core/auth2.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 export interface IModalContext {
   titleModal: string;
@@ -25,6 +26,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     public userService: UserService,
     public authService: AuthService2,
+    public router: Router,
     public modalService: SuiModalService
   ) { }
 
@@ -35,6 +37,7 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   accountSettingsModal(titleModal: string, user: User) {

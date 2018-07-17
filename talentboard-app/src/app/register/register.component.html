@@ -7,36 +7,39 @@
 
   <div class="ui basic segment">
     <div class="content">
-      <button type="button" class="ui fluid black button" (click)="tryGoogleLogin()" id="log-in-service">
+      <button type="button" class="ui fluid black button" id="log-in-service">
         <i class="google icon"></i>
         Register with Gmail
       </button>
       <div class="ui horizontal divider">
         Or
       </div>
-      <form [formGroup]="registerForm">
+      <form class="ui form" (ngSubmit)="register()">
         <div class="ui left icon input fluid" id="input-register">
-          <input type="text" formControlName="username" placeholder="Username">
+          <input type="text" name="name" [(ngModel)]="newUser.name" placeholder="Name">
           <i class="left user icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-register">
-          <input type="email" formControlName="email" placeholder="E-mail address">
+          <input type="email" name="email" [(ngModel)]="newUser.email" placeholder="E-mail address">
           <i class="left envelope icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-register">
-          <i class="lock icon"></i>
-          <input type="password" formControlName="password" placeholder="Password">
+          <input type="text" name="title" [(ngModel)]="newUser.title" placeholder="Title">
+          <i class="left id card icon"></i>
+        </div>
+        <div class="ui left icon input fluid" id="input-register">
+          <input type="text" name="company" [(ngModel)]="newUser.company" placeholder="Company">
+          <i class="left building icon"></i>
         </div>
         <div class="ui left icon input fluid" id="input-register">
           <i class="lock icon"></i>
-          <input type="password" formControlName="password" placeholder="Confirm password">
+          <input type="password" name="password" [(ngModel)]="password" placeholder="Password">
         </div>
-        <div class="center aligned">
-          <div class="ui fluid buttons">
-            <button type="submit" (click)="tryRegister(registerForm.value)" class="ui button instagram button-login">Register Account</button>
-          </div>
+        <div class="ui left icon input fluid" id="input-register">
+          <i class="lock icon"></i>
+          <input type="password" placeholder="Confirm password">
         </div>
-        <label class="error" style="margin-bottom: 20px !important;">{{errorMessage}}</label>
+        <button type="submit" class="ui fluid blue button button-login">Register Account</button>
       </form>
     </div>
   </div>

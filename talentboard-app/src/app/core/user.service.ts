@@ -18,7 +18,7 @@ export class UserService {
     return this.users;
   }
 
-  addUser(user: User) {
+  createUser(user: User) {
     this.db.list<User>('users').set(user.id, user);
   }
 

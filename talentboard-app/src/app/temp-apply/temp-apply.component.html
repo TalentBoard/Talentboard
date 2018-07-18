@@ -1,13 +1,14 @@
 <div *ngIf="applied === false">
-  <div class="ui segments">
-    <div class="ui center aligned segment">
-      <h2 class="">University of Ottawa</h2>
-    </div>
-    <div id="job-info-container" class="ui inverted center aligned segment">
+  <div id="job-info-container" class="ui segments">
+    <div class="ui segment" style="background-color: #004a95;">
+      <div id="job-name"><b>Software Engineer | University of Ottawa</b></div>
       <div id="job-info">
-        <div id="job-name">
-          Software Engineer
-        </div>
+        <i class="building icon"></i>
+        Ottawa, ON &nbsp;&nbsp;&nbsp;&nbsp;
+        <span>
+          <i class="briefcase icon"></i>
+          Fulltime
+        </span>
       </div>
     </div>
   </div>
@@ -40,15 +41,14 @@
           <input type="text" id="title" required [(ngModel)]="newApplicant.currentTitle" name="title">
         </div>
         <div id="resume-button" class="ui left action input">
-          <button class="ui active instagram labeled icon button" style="width: 160px;">
-            <i class="file pdf icon"></i>
-            Resume
+          <button class="ui active basic secondary labeled icon button" style="width: 160px;">
+              <i class="file pdf icon"></i> Resume
           </button>
           <input type="file" (change)="uploadResume($event)" accept=".pdf" value="Upload resume" />
         </div>
         <br>
         <div id="letter-button" class="ui left action input">
-          <button class="ui active instagram labeled icon button" style="width: 160px;">
+          <button class="ui active basic secondary labeled icon button" style="width: 160px;">
             <i class="file pdf icon"></i>
             Cover Letter
           </button>
@@ -74,5 +74,4 @@
       We will be reviewing your application carefully and if selected you will receive an email covering the next steps.
     </p>
   </div>
-
 </div>

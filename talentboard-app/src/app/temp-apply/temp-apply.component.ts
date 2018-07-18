@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../model/Applicant';
+import { ApplicantService } from '../core/applicant.service';
 
 @Component({
   selector: 'app-temp-apply',
@@ -10,9 +11,13 @@ export class TempApplyComponent implements OnInit {
 
   newApplicant: Applicant = new Applicant();
 
-  constructor() { }
+  constructor(public applicantService: ApplicantService) { }
 
   ngOnInit() {
+  }
+
+  applyToJob() {
+    this.applicantService.addApplicant(this.newApplicant);
   }
 
 }

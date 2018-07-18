@@ -12,13 +12,14 @@ export class Applicant {
   public favouritedUserIds: Array<string>;
   public assignedUserId: string;
 
-
-  constructor(name?: string, email?: string) {
-    this.name = name || '';
-    this.email = email || '';
+  constructor() {
+    this.name = '';
+    this.email = '';
     this.phoneNumber = '';
     this.status = 'Applied';
+    this.about = '';
     this.resumeURL = '';
+    this.coverLetterURL = '';
     this.currentEmployer = '';
     this.currentTitle = '';
     this.favouritedUserIds = [];

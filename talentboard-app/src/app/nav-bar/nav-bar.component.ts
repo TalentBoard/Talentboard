@@ -4,6 +4,8 @@ import { User } from '../model/User';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
+import { ApplicantService } from '../core/applicant.service';
+import { Applicant } from '../model/Applicant';
 
 export interface IModalContext {
   titleModal: string;
@@ -26,6 +28,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     public userService: UserService,
     public authService: AuthService,
+    private applicantService: ApplicantService,
     public router: Router,
     public modalService: SuiModalService
   ) { }
@@ -58,5 +61,21 @@ export class NavBarComponent implements OnInit {
         this.userService.updateUser(this.currentUser.id, this.currentUser);
       })
       .onDeny(_ => { });
+  }
+
+  addApplicant() {
+    const applicant = new Applicant();
+    applicant.name = 'John Smith';
+    applicant.email = 'john.smith@gmail.com';
+    applicant.status = 'Applied';
+    applicant.about = `My name is John Smith, and I’m currently looking for a job in youth services.
+    I have 10 years of experience working with youth agencies. I have a bachelor’s degree in outdoor education.
+    I raise money, train leaders, and organize units. I have raised over $100,000 each of the last six years.
+    I consider myself a good public speaker, and I have a good sense of humor.`;
+    applicant.currentEmployer = 'Google';
+    applicant.currentTitle = 'Janitor';
+    applicant.assignedUserId = this.currentUser.id;
+
+    this.applicantService.addApplicant(applicant, '-LHeKp2kN5H2P5oGu9EP');
   }
 }

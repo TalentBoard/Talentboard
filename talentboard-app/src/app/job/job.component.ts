@@ -19,6 +19,7 @@ export class JobComponent implements OnInit {
   currentJob: Job = new Job();
 
   jobList: Array<Job> = [];
+  applicantList: Array<Applicant> = [];
   applied: Array<Applicant> = [];
   phoneInterview: Array<Applicant> = [];
   personInterview: Array<Applicant> = [];

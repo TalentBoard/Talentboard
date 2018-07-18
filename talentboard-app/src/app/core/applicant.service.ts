@@ -3,6 +3,7 @@ import { AngularFireDatabase} from 'angularfire2/database';
 import { Applicant } from '../model/Applicant';
 import { Observable } from 'rxjs/Observable';
 import { NgForm } from '@angular/forms';
+import { JobService } from './job.service';
 
 @Injectable()
 export class ApplicantService {
@@ -10,19 +11,18 @@ export class ApplicantService {
   applicants: Observable<Applicant[]>;
   currentApplicant: Applicant;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private jobService: JobService) {
     this.applicants = db.list<Applicant>('applicants').valueChanges();
   }
 
-  // getAllApplicants(): Observable<Applicant[]> {
-  //   return this.applicants;
-  // }
-  getAllApplicants() {
-    return this.db.list<Applicant>('applicants');
+  getAllApplicants(): Observable<Applicant[]> {
+    return this.applicants;
   }
 
-  addApplicant(applicant: Applicant) {
-    this.db.list<Applicant>('applicants').push(applicant);
+  addApplicant(applicant: Applicant, jobId: string) {
+    applicant.id = this.db.createPushId();
+    this.db.list<Applicant>('applicants').set(applicant.id, applicant);
+    this.jobService.addApplicantToJob(applicant.id, jobId);
   }
 
   getApplicantById(id: string): Observable<Applicant> {
@@ -31,14 +31,6 @@ export class ApplicantService {
 
   updateApplicant(id: string, updatedApplicant: Applicant) {
     this.db.list<Applicant>('applicants').set(id, updatedApplicant);
-  }
-
-  onSubmit(jobForm: NgForm) {
-
-  }
-
-  resetForm(jobForm?: NgForm) {
-
   }
 
   getApplicantByStatus(status: string) {

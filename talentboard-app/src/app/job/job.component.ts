@@ -19,6 +19,7 @@ export class JobComponent implements OnInit {
   currentJob: Job = new Job();
 
   jobList: Array<Job> = [];
+  applicantList: Array<Applicant> = [];
   applied: Array<Applicant> = [];
   phoneInterview: Array<Applicant> = [];
   personInterview: Array<Applicant> = [];
@@ -70,10 +71,11 @@ export class JobComponent implements OnInit {
   }
 
   changeCurrentJob(id: string) {
-    const job = this.jobList.filter((value) => {
+    const job = this.jobList.find((value) => {
       return value.id === id;
     });
-    this.currentJob = job[0];
+    console.log(job);
+    this.currentJob = job;
   }
 }
 

@@ -11,5 +11,5 @@ export const rootRouterConfig: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'app', component: NavBarComponent, canActivate: [AuthGuard]},
-  { path: 'apply', component: TempApplyComponent },
+  { path: '-LHeDXD-vULI8NjUrcAk-apply', component: TempApplyComponent },
 ];

@@ -4,7 +4,7 @@
       {{ applicant.name }}
     </div>
     <div class="meta">
-      <span class="category">{{ applicant.email }}</span>
+      <span class="category">{{ applicant.currentTitle }} @ {{ applicant.currentEmployer }}</span>
     </div>
   </div>
   <div class="extra content">
@@ -63,7 +63,8 @@
 
   </div>
   <div class="actions">
-    <button class="ui primary button">Send Email</button>
+    <a href="mailto:{{ applicant.email }}?Subject=Hello">
+    <button class="ui primary button">Send Email</button></a>
     <button class="ui green button" (click)="modal.approve()" autofocus>Close</button>
   </div>
 </ng-template>

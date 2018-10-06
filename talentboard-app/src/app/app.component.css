@@ -1,3 +1,11 @@
+html{
+min-height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   margin-left: 5px;

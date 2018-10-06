@@ -5,6 +5,7 @@ export class User {
   title: string;
   company: string;
   jobIds: Array<string>;
+  currentJobView: string;
   profileURL: string;
 
   constructor() {

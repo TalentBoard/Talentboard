@@ -1,11 +1,53 @@
 <div id="column" class="ui segment" dnd-droppable (onDropSuccess)="addItem($event)">
   <div class="content column-title">
-          {{name}}
+
+    {{name}}
+
+    <div class="ui secondary right pointing dropdown job-column-settings" suiDropdown autoClose="outsideClick">
+      <i class="ellipsis vertical icon"></i>
+      <div class="menu" suiDropdownMenu>
+        <div class="item" (click)="openAddApplicantModal('Add Applicant', newApplicant)"><i class="plus icon"></i>Add
+          Applicant</div>
+        <div class="item"><i class="tasks icon"></i>Edit Stage</div>
+      </div>
+    </div>
   </div>
 
+
   <div class="job-column">
-    <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true" [dragData]="applicant"
-      (onDragSuccess)="removeItem($event)"></app-applicant>
+    <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true"
+      [dragData]="applicant" (onDragSuccess)="removeItem($event)"></app-applicant>
   </div>
 
 </div>
+
+<ng-template let-context let-modal="modal" #applicantModal>
+  <div class="header">{{ context.title }}</div>
+  <div class="content">
+    <form class="ui form">
+      <div class="field">
+        <label for="title">Name *</label>
+        <input type="text" id="name" required [(ngModel)]="context.applicant.name" name="title">
+      </div>
+      <div class="field">
+        <label for="title">Email *</label>
+        <input type="text" id="email" required [(ngModel)]="context.applicant.email" name="email">
+      </div>
+      <div class="field">
+        <label for="title">Phone Number</label>
+        <input type="text" id="phoneNumber" [(ngModel)]="context.applicant.phoneNumber" name="phoneNumber">
+      </div>
+      <div class="field">
+        <label for="title">Current Title</label>
+        <input type="text" id="title" [(ngModel)]="context.applicant.currentTitle" name="title">
+      </div>
+      <div class="field">
+        <label for="title">Current Employer</label>
+        <input type="text" id="employer" [(ngModel)]="context.applicant.currentEmployer" name="employer">
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <button class="ui green button" (click)="modal.approve()" autofocus>Create</button>
+  </div>
+</ng-template>

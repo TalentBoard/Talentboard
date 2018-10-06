@@ -6,7 +6,6 @@
   margin-right: 5px;
 }
 
-
 .job-column {
   margin-right: 5px;
   vertical-align: top;
@@ -23,4 +22,13 @@
   color: #4C555C;
   margin-top: 0px;
   margin-bottom: 15px;
+}
+
+.job-column-settings {
+  float: right;
+  margin-right: -7px;
+}
+
+.job-column-settings:hover {
+  color: rgb(161, 161, 161);
 }

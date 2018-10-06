@@ -13,6 +13,7 @@ export class User {
     this.name = '';
     this.email = '';
     this.jobIds = [];
+    this.currentJobView = '';
     this.profileURL = '';
   }
 }

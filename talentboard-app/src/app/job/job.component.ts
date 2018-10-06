@@ -53,6 +53,7 @@ export class JobComponent implements OnInit {
     this.jobService.getJobById(this.currentUser.currentJobView).subscribe(currentJob => {
       this.currentJob = currentJob;
     });
+    this.getNumberOfJobs();
   }
 
   openJobModal(title: string, job: Job) {
@@ -71,6 +72,7 @@ export class JobComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(this.currentUser));
           location.reload();
         } else {
+          console.log('manz was here');
           this.jobService.addJob(this.newJob);
           this.currentUser.jobIds.push(job.id);
           this.currentUser.currentJobView = job.id;
@@ -91,6 +93,13 @@ export class JobComponent implements OnInit {
     this.currentUser.currentJobView = job.id;
     this.userService.updateUser(this.currentUser.id, this.currentUser);
     localStorage.setItem('user', JSON.stringify(this.currentUser));
+  }
+
+  getNumberOfJobs() {
+    if (this.currentUser.jobIds == null) {
+      return 0;
+    }
+    return this.currentUser.jobIds.length;
   }
 }
 

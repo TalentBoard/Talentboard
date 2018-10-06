@@ -3,6 +3,8 @@ import { Job } from '../model/Job';
 import { Applicant } from '../model/Applicant';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { JobService } from '../core/job.service';
+import { UserService } from '../core/user.service';
+import { User } from '../model/User';
 
 export interface IContext {
   title: string;
@@ -16,6 +18,7 @@ export interface IContext {
 })
 export class JobComponent implements OnInit {
 
+  currentUser: User;
   currentJob: Job = new Job();
 
   jobList: Array<Job> = [];
@@ -38,15 +41,19 @@ export class JobComponent implements OnInit {
   public jobModal: ModalTemplate<IContext, void, void>;
   public newJob: Job = new Job();
 
-  constructor(private modalService: SuiModalService, private jobService: JobService) { }
+  constructor(private modalService: SuiModalService, private jobService: JobService, private userService: UserService) { }
 
   ngOnInit() {
-    this.jobService.getAllJobs().subscribe(jobs => {
-      this.jobList = jobs;
-      if (jobs[0] !== undefined && this.currentJob.id === undefined) {
-        this.currentJob = jobs[0];
-      }
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    for (const jobId of this.currentUser.jobIds) {
+      this.jobService.getJobById(jobId).subscribe(updatedJob => {
+        this.jobList.push(updatedJob);
+      });
+    }
+    this.jobService.getJobById(this.currentUser.currentJobView).subscribe(currentJob => {
+      this.currentJob = currentJob;
     });
+    this.getNumberOfJobs();
   }
 
   openJobModal(title: string, job: Job) {
@@ -62,9 +69,17 @@ export class JobComponent implements OnInit {
       .onApprove(_ => {
         if (job.id) {
           this.jobService.updateJob(job.id, job);
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
+          location.reload();
         } else {
+          console.log('manz was here');
           this.jobService.addJob(this.newJob);
+          this.currentUser.jobIds.push(job.id);
+          this.currentUser.currentJobView = job.id;
+          this.userService.updateUser(this.currentUser.id, this.currentUser);
           this.newJob = new Job();
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
+          location.reload();
         }
       })
       .onDeny(_ => { });
@@ -74,8 +89,17 @@ export class JobComponent implements OnInit {
     const job = this.jobList.find((value) => {
       return value.id === id;
     });
-    console.log(job);
     this.currentJob = job;
+    this.currentUser.currentJobView = job.id;
+    this.userService.updateUser(this.currentUser.id, this.currentUser);
+    localStorage.setItem('user', JSON.stringify(this.currentUser));
+  }
+
+  getNumberOfJobs() {
+    if (this.currentUser.jobIds == null) {
+      return 0;
+    }
+    return this.currentUser.jobIds.length;
   }
 }
 

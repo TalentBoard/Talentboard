@@ -29,9 +29,12 @@ export class LoginComponent {
         currentUser.name = fbUser.displayName;
         currentUser.email = fbUser.email;
         currentUser.profileURL = fbUser.photoURL;
+        currentUser.currentJobView = '';
+        currentUser.jobIds = [];
         localStorage.setItem('user', JSON.stringify(currentUser));
         this.userService.createUser(currentUser);
         this.router.navigate(['/app']);
+        location.reload();
       } else {
         this.userService.getUserById(fbUser.uid).subscribe(user => {
           localStorage.setItem('user', JSON.stringify(user));

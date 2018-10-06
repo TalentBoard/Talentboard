@@ -5,6 +5,7 @@ export class User {
   title: string;
   company: string;
   jobIds: Array<string>;
+  currentJobView: string;
   profileURL: string;
 
   constructor() {
@@ -12,6 +13,7 @@ export class User {
     this.name = '';
     this.email = '';
     this.jobIds = [];
+    this.currentJobView = '';
     this.profileURL = '';
   }
 }

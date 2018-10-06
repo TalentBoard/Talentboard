@@ -1,6 +1,6 @@
 #column {
   background-color:#f3f3f3;
-  height: 100%;
+  height: 100% !important;
   width: 300px !important;
   margin-left: 15px;
   margin-right: 5px;

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Job } from '../model/Job';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
+import { UserService } from './user.service';
 
 @Injectable()
 export class JobService {
@@ -10,7 +11,7 @@ export class JobService {
   jobRef = this.db.list<Job>('jobs');
   jobs: Observable<Job[]>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private userService: UserService) {
     this.jobs = this.jobRef.valueChanges();
   }
 

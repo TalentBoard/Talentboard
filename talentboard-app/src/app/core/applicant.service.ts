@@ -18,9 +18,6 @@ export class ApplicantService {
   getAllApplicants(): Observable<Applicant[]> {
     return this.applicants;
   }
-  // getAllApplicants() {
-  //   return this.db.list<Applicant>('applicants');
-  // }
 
   addApplicant(applicant: Applicant, jobId: string) {
     applicant.id = this.db.createPushId();

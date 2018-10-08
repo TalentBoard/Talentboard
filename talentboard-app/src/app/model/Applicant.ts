@@ -11,6 +11,7 @@ export class Applicant {
   public currentTitle: string;
   public favouritedUserIds: Array<string>;
   public assignedUserId: string;
+  public jobId: string;
 
   constructor() {
     this.name = '';
@@ -24,5 +25,6 @@ export class Applicant {
     this.currentTitle = '';
     this.favouritedUserIds = [];
     this.assignedUserId = '';
+    this.jobId = '';
   }
 }

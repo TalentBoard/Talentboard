@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Applicant } from '../model/Applicant';
 import { User } from '../model/User';
+import { Job } from '../model/Job';
 import { SuiModalService, ModalTemplate, TemplateModalConfig } from '../../../node_modules/ng2-semantic-ui';
 import { ApplicantService } from '../core/applicant.service';
+import { UserService } from '../core/user.service';
 
 export interface IContext {
   title: string;
@@ -21,16 +23,17 @@ export class ColumnComponent implements OnInit {
 
   applicant: Applicant;
   currentUser: User;
+  currentJob: Job;
 
   @ViewChild('applicantModal')
   public applicantModal: ModalTemplate<IContext, void, void>;
   public newApplicant: Applicant = new Applicant();
 
-  constructor(private modalService: SuiModalService, private applicantService: ApplicantService) { }
+  constructor(private modalService: SuiModalService, private applicantService: ApplicantService, private userService: UserService) { }
 
   ngOnInit() {
-   this.sortItems();
-   this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.sortItems();
   }
 
   removeItem(e: any) {
@@ -45,7 +48,9 @@ export class ColumnComponent implements OnInit {
 
   addItem(e: any) {
     const applicant: Applicant = e.dragData;
-    this.applicants.push(applicant);
+    applicant.status = this.name;
+    this.applicantService.updateApplicant(applicant.id, applicant);
+    console.log(applicant);
   }
 
   sortItems() {

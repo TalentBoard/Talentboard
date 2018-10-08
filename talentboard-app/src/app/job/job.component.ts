@@ -4,6 +4,7 @@ import { Applicant } from '../model/Applicant';
 import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { JobService } from '../core/job.service';
 import { UserService } from '../core/user.service';
+import { ApplicantService } from '../core/applicant.service';
 import { User } from '../model/User';
 
 export interface IContext {
@@ -41,19 +42,50 @@ export class JobComponent implements OnInit {
   public jobModal: ModalTemplate<IContext, void, void>;
   public newJob: Job = new Job();
 
-  constructor(private modalService: SuiModalService, private jobService: JobService, private userService: UserService) { }
+  constructor(private modalService: SuiModalService,
+    private jobService: JobService,
+    private userService: UserService,
+    private applicantService: ApplicantService) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.fetchUserInfo();
     for (const jobId of this.currentUser.jobIds) {
       this.jobService.getJobById(jobId).subscribe(updatedJob => {
         this.jobList.push(updatedJob);
       });
     }
+    this.fetchApplicants();
+  }
+
+  fetchApplicants() {
     this.jobService.getJobById(this.currentUser.currentJobView).subscribe(currentJob => {
       this.currentJob = currentJob;
+      if (currentJob.applicantIds != null) {
+        for (const applicantId of Object.values(currentJob.applicantIds)) {
+          this.applicantService.getApplicantById(applicantId).subscribe(currentApplicant => {
+            switch (currentApplicant.status) {
+              case ('Applied'):
+                this.applied.push(currentApplicant);
+                break;
+              case ('Phone Interview'):
+                this.phoneInterview.push(currentApplicant);
+                break;
+              case ('In Person Interview'):
+                this.personInterview.push(currentApplicant);
+                break;
+              case ('Declined'):
+                this.declined.push(currentApplicant);
+                break;
+              case ('Sent Offer'):
+                this.offer.push(currentApplicant);
+                break;
+            }
+            this.applicantList.push(currentApplicant);
+          });
+        }
+      }
     });
-    this.getNumberOfJobs();
   }
 
   openJobModal(title: string, job: Job) {
@@ -100,6 +132,13 @@ export class JobComponent implements OnInit {
       return 0;
     }
     return this.currentUser.jobIds.length;
+  }
+
+  fetchUserInfo() {
+    this.userService.getUserById(this.currentUser.id).subscribe(user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.currentUser = JSON.parse(localStorage.getItem('user'));
+    });
   }
 }
 

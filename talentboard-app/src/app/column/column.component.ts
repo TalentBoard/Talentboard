@@ -50,7 +50,6 @@ export class ColumnComponent implements OnInit {
     const applicant: Applicant = e.dragData;
     applicant.status = this.name;
     this.applicantService.updateApplicant(applicant.id, applicant);
-    console.log(applicant);
   }
 
   sortItems() {
@@ -72,6 +71,7 @@ export class ColumnComponent implements OnInit {
       .open(config)
       .onApprove(_ => {
         this.applicantService.addApplicant(this.newApplicant, this.currentUser.currentJobView);
+        location.reload();
       })
       .onDeny(_ => { });
   }

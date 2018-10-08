@@ -125,6 +125,7 @@ export class JobComponent implements OnInit {
     this.currentUser.currentJobView = job.id;
     this.userService.updateUser(this.currentUser.id, this.currentUser);
     localStorage.setItem('user', JSON.stringify(this.currentUser));
+    location.reload();
   }
 
   getNumberOfJobs() {

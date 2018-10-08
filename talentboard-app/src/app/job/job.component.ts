@@ -86,6 +86,7 @@ export class JobComponent implements OnInit {
         }
       }
     });
+    this.getNumberOfJobs();
   }
 
   openJobModal(title: string, job: Job) {

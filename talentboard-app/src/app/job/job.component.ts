@@ -23,7 +23,6 @@ export class JobComponent implements OnInit {
   currentJob: Job = new Job();
 
   jobList: Array<Job> = [];
-  applicantList: Array<Applicant> = [];
   applied: Array<Applicant> = [];
   phoneInterview: Array<Applicant> = [];
   personInterview: Array<Applicant> = [];
@@ -49,44 +48,66 @@ export class JobComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.fetchUserInfo();
-    for (const jobId of this.currentUser.jobIds) {
-      this.jobService.getJobById(jobId).subscribe(updatedJob => {
-        this.jobList.push(updatedJob);
-      });
+    if (this.currentUser.jobIds) {
+      for (const jobId of this.currentUser.jobIds) {
+        this.jobService.getJobById(jobId).subscribe(updatedJob => {
+          this.jobList.push(updatedJob);
+        });
+      }
     }
-    this.fetchApplicants();
+    if (this.currentUser.currentJobView) {
+      this.fetchApplicants();
+    }
   }
 
   fetchApplicants() {
     this.jobService.getJobById(this.currentUser.currentJobView).subscribe(currentJob => {
       this.currentJob = currentJob;
-      if (currentJob.applicantIds != null) {
+      if (currentJob.applicantIds) {
         for (const applicantId of Object.values(currentJob.applicantIds)) {
           this.applicantService.getApplicantById(applicantId).subscribe(currentApplicant => {
             switch (currentApplicant.status) {
               case ('Applied'):
-                this.applied.push(currentApplicant);
+                if (!this.containsApplicant(currentApplicant, this.applied)) {
+                  this.applied.push(currentApplicant);
+                }
                 break;
               case ('Phone Interview'):
-                this.phoneInterview.push(currentApplicant);
+                if (!this.containsApplicant(currentApplicant, this.phoneInterview)) {
+                  this.phoneInterview.push(currentApplicant);
+                }
                 break;
               case ('In Person Interview'):
-                this.personInterview.push(currentApplicant);
+                if (!this.containsApplicant(currentApplicant, this.personInterview)) {
+                  this.personInterview.push(currentApplicant);
+                }
                 break;
               case ('Declined'):
-                this.declined.push(currentApplicant);
+                if (!this.containsApplicant(currentApplicant, this.declined)) {
+                  this.declined.push(currentApplicant);
+                }
                 break;
               case ('Sent Offer'):
-                this.offer.push(currentApplicant);
+                if (!this.containsApplicant(currentApplicant, this.offer)) {
+                  this.offer.push(currentApplicant);
+                }
                 break;
             }
-            this.applicantList.push(currentApplicant);
           });
         }
       }
     });
   }
+
+  containsApplicant(applicant, applicants) {
+    let i;
+    for (i = 0; i < applicants.length; i++) {
+        if (applicants[i].id === applicant.id) {
+            return true;
+        }
+    }
+    return false;
+}
 
   openJobModal(title: string, job: Job) {
     const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
@@ -104,7 +125,6 @@ export class JobComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(this.currentUser));
           location.reload();
         } else {
-          console.log('manz was here');
           this.jobService.addJob(this.newJob);
           this.currentUser.jobIds.push(job.id);
           this.currentUser.currentJobView = job.id;
@@ -125,7 +145,6 @@ export class JobComponent implements OnInit {
     this.currentUser.currentJobView = job.id;
     this.userService.updateUser(this.currentUser.id, this.currentUser);
     localStorage.setItem('user', JSON.stringify(this.currentUser));
-    location.reload();
   }
 
   getNumberOfJobs() {
@@ -133,13 +152,6 @@ export class JobComponent implements OnInit {
       return 0;
     }
     return this.currentUser.jobIds.length;
-  }
-
-  fetchUserInfo() {
-    this.userService.getUserById(this.currentUser.id).subscribe(user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      this.currentUser = JSON.parse(localStorage.getItem('user'));
-    });
   }
 }
 

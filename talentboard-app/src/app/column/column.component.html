@@ -13,12 +13,10 @@
     </div>
   </div>
 
-
   <div class="job-column">
     <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true"
       [dragData]="applicant" (onDragSuccess)="removeItem($event)"></app-applicant>
   </div>
-
 </div>
 
 <ng-template let-context let-modal="modal" #applicantModal>

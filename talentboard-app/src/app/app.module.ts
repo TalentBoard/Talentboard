@@ -32,6 +32,7 @@ import { ApplicantListComponent } from './applicant-list/applicant-list.componen
 import { JobListComponent } from './job-list/job-list.component';
 import { TempApplyComponent } from './temp-apply/temp-apply.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {Component, OnInit, Input, ViewChild, SimpleChanges, OnChanges} from '@angular/core';
 import { Applicant } from '../model/Applicant';
 import { User } from '../model/User';
-import { Job } from '../model/Job';
 import { SuiModalService, ModalTemplate, TemplateModalConfig } from '../../../node_modules/ng2-semantic-ui';
 import { ApplicantService } from '../core/applicant.service';
 import { UserService } from '../core/user.service';
@@ -16,31 +15,29 @@ export interface IContext {
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.css']
 })
-export class ColumnComponent implements OnInit {
+export class ColumnComponent implements OnChanges {
 
   @Input() name: string;
   @Input() applicants: Array<Applicant> = [];
 
   applicant: Applicant;
   currentUser: User;
-  currentJob: Job;
 
   @ViewChild('applicantModal')
   public applicantModal: ModalTemplate<IContext, void, void>;
   public newApplicant: Applicant = new Applicant();
 
-  constructor(private modalService: SuiModalService, private applicantService: ApplicantService, private userService: UserService) { }
+  constructor(private modalService: SuiModalService, private applicantService: ApplicantService) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.sortItems();
   }
-
+  
   removeItem(e: any) {
     const applicant: Applicant = e.dragData;
     const index = this.applicants.map((value: Applicant) => {
-      return value.name;
-    }).indexOf(applicant.name);
+      return value.id;
+    }).indexOf(applicant.id);
     if (index !== -1) {
       this.applicants.splice(index, 1);
     }
@@ -48,8 +45,12 @@ export class ColumnComponent implements OnInit {
 
   addItem(e: any) {
     const applicant: Applicant = e.dragData;
-    applicant.status = this.name;
-    this.applicantService.updateApplicant(applicant.id, applicant);
+    if (applicant.status === this.name) {
+      this.applicants.push(applicant);
+    } else {
+      applicant.status = this.name;
+      this.applicantService.updateApplicant(applicant.id, applicant);
+    }
   }
 
   sortItems() {
@@ -71,7 +72,7 @@ export class ColumnComponent implements OnInit {
       .open(config)
       .onApprove(_ => {
         this.applicantService.addApplicant(this.newApplicant, this.currentUser.currentJobView);
-        location.reload();
+        this.newApplicant = new Applicant();
       })
       .onDeny(_ => { });
   }

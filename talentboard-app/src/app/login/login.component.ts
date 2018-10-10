@@ -37,6 +37,9 @@ export class LoginComponent {
         location.reload();
       } else {
         this.userService.getUserById(fbUser.uid).subscribe(user => {
+          if (!user.jobIds) {
+            user.jobIds = []; // temp fix because firebase doesn't store empty lists
+          }
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/app']);
         });
@@ -50,6 +53,9 @@ export class LoginComponent {
     this.authService.emailLogin(this.credentials.email, this.credentials.password).then(res => {
       const userId = res.user.uid;
       this.userService.getUserById(userId).subscribe(user => {
+        if (!user.jobIds) {
+            user.jobIds = []; // temp fix because firebase doesn't store empty lists
+          }
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/app']);
       });

@@ -35,13 +35,13 @@ export class NavBarComponent implements OnInit {
     this.currentViewState = 'kanban';
   }
 
+  public updateCurrentView(state) {
+    this.currentViewState = state;
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
-  }
-
-  updateCurrentView(state) {
-    this.currentViewState = state;
   }
 
   accountSettingsModal(titleModal: string, user: User) {

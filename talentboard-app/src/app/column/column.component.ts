@@ -32,7 +32,8 @@ export class ColumnComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
   }
-  
+
+
   removeItem(e: any) {
     const applicant: Applicant = e.dragData;
     const index = this.applicants.map((value: Applicant) => {

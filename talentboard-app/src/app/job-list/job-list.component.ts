@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Job } from '../model/Job';
+import { User } from '../model/User';
 import { JobService } from '../core/job.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-job-list',
@@ -9,12 +11,26 @@ import { JobService } from '../core/job.service';
 })
 export class JobListComponent implements OnInit {
 
+  currentUser: User;
   jobs: Array<Job> = [];
 
-  constructor(private jobService: JobService) { }
+  constructor(private jobService: JobService, private navBarComponent: NavBarComponent) { }
 
   ngOnInit() {
-    this.jobService.getAllJobs().subscribe(res => this.jobs = res);
+    this.jobs = [];
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    for (const jobId of this.currentUser.jobIds) {
+      this.jobService.getJobById(jobId).subscribe(job => {
+        this.jobs.push(job);
+      });
+    }
+  }
+
+  viewJobBoard(job: Job) {
+    this.currentUser.currentJobView = job.id;
+    localStorage.setItem('user', JSON.stringify(this.currentUser));
+    this.navBarComponent.updateCurrentView('kanban');
   }
 
 }
+

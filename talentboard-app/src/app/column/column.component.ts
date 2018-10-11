@@ -13,7 +13,7 @@ export interface IContext {
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
-  styleUrls: ['./column.component.css']
+  styleUrls: ['./column.component.scss']
 })
 export class ColumnComponent implements OnChanges {
 
@@ -32,7 +32,8 @@ export class ColumnComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
   }
-  
+
+
   removeItem(e: any) {
     const applicant: Applicant = e.dragData;
     const index = this.applicants.map((value: Applicant) => {

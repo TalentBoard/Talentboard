@@ -119,5 +119,10 @@
       }
     }
   },
-  "defaultProject": "talentboard-app"
+  "defaultProject": "talentboard-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

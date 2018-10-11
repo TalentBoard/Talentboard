@@ -6,7 +6,7 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 @Component({
   selector: 'app-temp-apply',
   templateUrl: './temp-apply.component.html',
-  styleUrls: ['./temp-apply.component.css']
+  styleUrls: ['./temp-apply.component.scss']
 })
 export class TempApplyComponent implements OnInit {
 

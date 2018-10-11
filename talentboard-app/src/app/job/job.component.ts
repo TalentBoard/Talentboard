@@ -15,7 +15,7 @@ export interface IContext {
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
-  styleUrls: ['./job.component.css']
+  styleUrls: ['./job.component.scss']
 })
 export class JobComponent implements OnInit {
 
@@ -41,6 +41,16 @@ export class JobComponent implements OnInit {
   public jobModal: ModalTemplate<IContext, void, void>;
   public newJob: Job = new Job();
 
+  static containsApplicant(applicant, applicants) {
+    let i;
+    for (i = 0; i < applicants.length; i++) {
+        if (applicants[i].id === applicant.id) {
+            return true;
+        }
+    }
+    return false;
+  }
+
   constructor(private modalService: SuiModalService,
     private jobService: JobService,
     private userService: UserService,
@@ -56,11 +66,12 @@ export class JobComponent implements OnInit {
       }
     }
     if (this.currentUser.currentJobView) {
-      this.fetchApplicants();
+      this.fetchAllApplicants();
     }
   }
 
-  fetchApplicants() {
+  fetchAllApplicants() {
+    this.clearAllApplicants();
     this.jobService.getJobById(this.currentUser.currentJobView).subscribe(currentJob => {
       this.currentJob = currentJob;
       if (currentJob.applicantIds) {
@@ -68,27 +79,27 @@ export class JobComponent implements OnInit {
           this.applicantService.getApplicantById(applicantId).subscribe(currentApplicant => {
             switch (currentApplicant.status) {
               case ('Applied'):
-                if (!this.containsApplicant(currentApplicant, this.applied)) {
+                if (!JobComponent.containsApplicant(currentApplicant, this.applied)) {
                   this.applied.push(currentApplicant);
                 }
                 break;
               case ('Phone Interview'):
-                if (!this.containsApplicant(currentApplicant, this.phoneInterview)) {
+                if (!JobComponent.containsApplicant(currentApplicant, this.phoneInterview)) {
                   this.phoneInterview.push(currentApplicant);
                 }
                 break;
               case ('In Person Interview'):
-                if (!this.containsApplicant(currentApplicant, this.personInterview)) {
+                if (!JobComponent.containsApplicant(currentApplicant, this.personInterview)) {
                   this.personInterview.push(currentApplicant);
                 }
                 break;
               case ('Declined'):
-                if (!this.containsApplicant(currentApplicant, this.declined)) {
+                if (!JobComponent.containsApplicant(currentApplicant, this.declined)) {
                   this.declined.push(currentApplicant);
                 }
                 break;
               case ('Sent Offer'):
-                if (!this.containsApplicant(currentApplicant, this.offer)) {
+                if (!JobComponent.containsApplicant(currentApplicant, this.offer)) {
                   this.offer.push(currentApplicant);
                 }
                 break;
@@ -99,15 +110,37 @@ export class JobComponent implements OnInit {
     });
   }
 
-  containsApplicant(applicant, applicants) {
-    let i;
-    for (i = 0; i < applicants.length; i++) {
-        if (applicants[i].id === applicant.id) {
-            return true;
-        }
+  clearAllApplicants() {
+    this.applied = [];
+    this.phoneInterview = [];
+    this.personInterview = [];
+    this.declined = [];
+    this.offer = [];
+  }
+
+  clearAllJobs() {
+    this.jobList = [];
+  }
+
+
+  changeCurrentJob(id: string) {
+    const job = this.jobList.find((value) => {
+      return value.id === id;
+    });
+    this.currentJob = job;
+    this.currentUser.currentJobView = job.id;
+    this.userService.updateUser(this.currentUser.id, this.currentUser);
+    localStorage.setItem('user', JSON.stringify(this.currentUser));
+    console.log(this.jobList);
+    this.fetchAllApplicants();
+  }
+
+  getNumberOfJobs() {
+    if (this.currentUser.jobIds == null) {
+      return 0;
     }
-    return false;
-}
+    return this.currentUser.jobIds.length;
+  }
 
   openJobModal(title: string, job: Job) {
     const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
@@ -137,21 +170,5 @@ export class JobComponent implements OnInit {
       .onDeny(_ => { });
   }
 
-  changeCurrentJob(id: string) {
-    const job = this.jobList.find((value) => {
-      return value.id === id;
-    });
-    this.currentJob = job;
-    this.currentUser.currentJobView = job.id;
-    this.userService.updateUser(this.currentUser.id, this.currentUser);
-    localStorage.setItem('user', JSON.stringify(this.currentUser));
-  }
-
-  getNumberOfJobs() {
-    if (this.currentUser.jobIds == null) {
-      return 0;
-    }
-    return this.currentUser.jobIds.length;
-  }
 }
 

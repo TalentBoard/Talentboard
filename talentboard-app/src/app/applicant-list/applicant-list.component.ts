@@ -4,7 +4,7 @@ import { Applicant } from '../model/Applicant';
 @Component({
   selector: 'app-applicant-list',
   templateUrl: './applicant-list.component.html',
-  styleUrls: ['./applicant-list.component.css']
+  styleUrls: ['./applicant-list.component.scss']
 })
 export class ApplicantListComponent implements OnInit {
 

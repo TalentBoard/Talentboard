@@ -1,19 +1,52 @@
-<div class="container" style="margin-top: 20px;">
-    <h2 style="margin-left:50px;">Applicants View</h2>
-    <div class="ui divider" style="margin-left: 50px; margin-right: 50px;"></div>
-    <div *ngFor="let applicant of applicants" class="ui raised segment" id="job-item">
-      <div class="ui grid">
-        <div class="four column row">
-          <div class="left floated column">
-            <b>{{ applicant.name }}</b><br>
-            {{ applicant.currentTitle }} @ {{ applicant.currentEmployer}}
-          </div>
-          <div class="right floated column">
-            <button class="ui button right floated" style="bottom: 20px !important;">
-              <i class="user icon"></i>View Profile
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--<div class="container" style="margin-top: 20px;">-->
+    <!--<h2 style="margin-left:50px;">Applicants View</h2>-->
+    <!--<div class="ui divider" style="margin-left: 50px; margin-right: 50px;"></div>-->
+    <!--<div *ngFor="let applicant of applicants" class="ui raised segment" id="job-item">-->
+      <!--<div class="ui grid">-->
+        <!--<div class="four column row">-->
+          <!--<div class="left floated column">-->
+            <!--<b>{{ applicant.name }}</b><br>-->
+            <!--{{ applicant.currentTitle }} @ {{ applicant.currentEmployer}}-->
+          <!--</div>-->
+          <!--<div class="right floated column">-->
+            <!--<button class="ui button right floated" style="bottom: 20px !important;">-->
+              <!--<i class="user icon"></i>View Profile-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<div class="amar">
+<form>
+  <input id="input-1" type="text" placeholder="John Doe" required autofocus />
+  <label for="input-1">
+    <span class="label-text">Full Name</span>
+    <span class="nav-dot"></span>
+    <div class="signup-button-trigger">Sign Up</div>
+  </label>
+  <input id="input-2" type="text" placeholder="john" required />
+  <label for="input-2">
+    <span class="label-text">Username</span>
+    <span class="nav-dot"></span>
+  </label>
+  <input id="input-3" type="email" placeholder="email@address.com" required />
+  <label for="input-3">
+    <span class="label-text">Email</span>
+    <span class="nav-dot"></span>
+  </label>
+  <input id="input-4" type="text" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+  <label for="input-4">
+    <span class="label-text">Password</span>
+    <span class="nav-dot"></span>
+  </label>
+  <input id="input-5" type="text" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+  <label for="input-5">
+    <span class="label-text">Confirm Password</span>
+    <span class="nav-dot"></span>
+  </label>
+  <button type="submit">Create Your Account</button>
+  <p class="tip">Press Tab</p>
+  <div class="signup-button">Sign Up</div>
+</form>
+</div>

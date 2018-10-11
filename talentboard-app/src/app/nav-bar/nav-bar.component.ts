@@ -13,7 +13,7 @@ export interface IModalContext {
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
 
@@ -35,13 +35,13 @@ export class NavBarComponent implements OnInit {
     this.currentViewState = 'kanban';
   }
 
+  public updateCurrentView(state) {
+    this.currentViewState = state;
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
-  }
-
-  updateCurrentView(state) {
-    this.currentViewState = state;
   }
 
   accountSettingsModal(titleModal: string, user: User) {
@@ -60,3 +60,4 @@ export class NavBarComponent implements OnInit {
       .onDeny(_ => { });
   }
 }
+

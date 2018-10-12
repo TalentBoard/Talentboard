@@ -1,6 +1,6 @@
 $background: #111E25;
 $dark: #111;
-$primary: #bb1515;
+$primary: #0586bb;
 
 input, 
 button {
@@ -9,7 +9,7 @@ button {
   left: 50%;
   transform: translate(-50%, -300%);
   display: block;
-  width: 70vw;
+  width: 30vw;
   opacity: 0;
   pointer-events: none;
   transition: all .5s cubic-bezier(.4, .25, .8, .3);
@@ -21,9 +21,9 @@ input {
   border-bottom: 1px solid $primary;
   outline: 0;
   background: transparent;
-  color: #fff;
-  font-size: 3rem;
-  line-height: 4rem;
+  color: #181818;
+  font-size: 1rem;
+  line-height: 2rem;
   letter-spacing: .125rem;
   transition: all .5s cubic-bezier(.4, .25, .8, .3);
 }

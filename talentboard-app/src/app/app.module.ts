@@ -31,6 +31,7 @@ import { JobComponent } from './job/job.component';
 import { ApplicantListComponent } from './applicant-list/applicant-list.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { TempApplyComponent } from './temp-apply/temp-apply.component';
+import { JobFormComponent } from './job-form/job-form.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { TempApplyComponent } from './temp-apply/temp-apply.component';
     ApplicantListComponent,
     JobListComponent,
     TempApplyComponent,
+    JobFormComponent,
   ],
   imports: [
     BrowserModule,

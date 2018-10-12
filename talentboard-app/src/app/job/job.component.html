@@ -5,7 +5,7 @@
   </div>
 
   <div style="margin-top: 25px;" class="ui two column centered grid">
-    <button class="ui button" (click)="openJobModal('Add Job', newJob)">
+    <button class="ui button" (click)="toggleJobModal = true">
       <i class="plus icon"></i>Add Job
     </button>
   </div>
@@ -18,12 +18,12 @@
         <div class="job-title">
           <i class="circle icon job-status-icon" [ngClass]="currentJob.isOpen ? 'green' : 'red' "></i>
           {{ currentJob.title }}
-          <i class="edit basic icon job-edit-icon" (click)="openJobModal('Edit Job', currentJob)"></i>
+          <i class="edit basic icon job-edit-icon" (click)="toggleJobModal = true"></i>
         </div>
       </div>
 
       <div class="column">
-        <button class="ui button right floated" (click)="openJobModal('Add Job', newJob)">
+        <button class="ui button right floated" (click)="toggleJobModal = true">
           <i class="plus icon"></i>Add Job
         </button>
 
@@ -57,40 +57,4 @@
   </div>
 </div>
 
-<ng-template let-context let-modal="modal" #jobModal>
-    <!--<div class="header">{{ context.title }}</div>-->
-    <!--<div class="content">-->
-      <!--<form class="ui form">-->
-        <!--<div class="field">-->
-          <!--<label for="title">Job Title</label>-->
-          <!--<input type="text" id="title" required [(ngModel)]="context.job.title" name="title">-->
-        <!--</div>-->
-        <!--<div class="field">-->
-          <!--<label for="description">Job Description</label>-->
-          <!--<textarea id="description" rows="8" required [(ngModel)]="context.job.description" name="description"></textarea>-->
-        <!--</div>-->
-        <!--<div class="field">-->
-          <!--<label for="location">Location</label>-->
-          <!--<sui-select class="selection" [(ngModel)]="context.job.location" name="location">-->
-            <!--<sui-select-option *ngFor="let option of locations" [value]="option">-->
-            <!--</sui-select-option>-->
-          <!--</sui-select>-->
-        <!--</div>-->
-        <!--<div class="field">-->
-          <!--<label for="salary">Salary</label>-->
-          <!--<div class="ui labeled input">-->
-            <!--<div class="ui label">$</div>-->
-            <!--<input type="text" id="salary" required [(ngModel)]="context.job.salary" name="salary">-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</form>-->
-    <!--</div>-->
-    <!--<div class="actions">-->
-      <!--<button class="ui red button" (click)="modal.deny()">Cancel</button>-->
-      <!--<button class="ui green button" (click)="modal.approve()" autofocus>OK</button>-->
-    <!--</div>-->
-
-
-
-
-  </ng-template>
+<app-job-form *ngIf="toggleJobModal" (toggleJobModal)="toggleJobModal = false"></app-job-form>

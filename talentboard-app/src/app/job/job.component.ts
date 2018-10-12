@@ -1,16 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from '../model/Job';
 import { Applicant } from '../model/Applicant';
-import { ModalTemplate, TemplateModalConfig, SuiModalService } from 'ng2-semantic-ui';
 import { JobService } from '../core/job.service';
 import { UserService } from '../core/user.service';
 import { ApplicantService } from '../core/applicant.service';
 import { User } from '../model/User';
-
-export interface IContext {
-  title: string;
-  job: Job;
-}
 
 @Component({
   selector: 'app-job',
@@ -28,18 +22,8 @@ export class JobComponent implements OnInit {
   personInterview: Array<Applicant> = [];
   declined: Array<Applicant> = [];
   offer: Array<Applicant> = [];
-  locations = [
-    'Calgary, AB',
-    'Halifax, NS',
-    'Montreal, QC',
-    'Ottawa, ON',
-    'Toronto, ON',
-    'Vancouver, BC',
-  ];
 
-  @ViewChild('jobModal')
-  public jobModal: ModalTemplate<IContext, void, void>;
-  public newJob: Job = new Job();
+  toggleJobModal = false;
 
   static containsApplicant(applicant, applicants) {
     let i;
@@ -51,8 +35,7 @@ export class JobComponent implements OnInit {
     return false;
   }
 
-  constructor(private modalService: SuiModalService,
-    private jobService: JobService,
+  constructor(private jobService: JobService,
     private userService: UserService,
     private applicantService: ApplicantService) { }
 
@@ -122,7 +105,6 @@ export class JobComponent implements OnInit {
     this.jobList = [];
   }
 
-
   changeCurrentJob(id: string) {
     const job = this.jobList.find((value) => {
       return value.id === id;
@@ -140,34 +122,6 @@ export class JobComponent implements OnInit {
       return 0;
     }
     return this.currentUser.jobIds.length;
-  }
-
-  openJobModal(title: string, job: Job) {
-    const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
-    config.isClosable = false;
-    config.size = 'small';
-    config.transition = 'fade up';
-    config.transitionDuration = 400;
-    config.context = { title: title, job: job };
-
-    this.modalService
-      .open(config)
-      .onApprove(_ => {
-        if (job.id) {
-          this.jobService.updateJob(job.id, job);
-          localStorage.setItem('user', JSON.stringify(this.currentUser));
-          location.reload();
-        } else {
-          this.jobService.addJob(this.newJob);
-          this.currentUser.jobIds.push(job.id);
-          this.currentUser.currentJobView = job.id;
-          this.userService.updateUser(this.currentUser.id, this.currentUser);
-          this.newJob = new Job();
-          localStorage.setItem('user', JSON.stringify(this.currentUser));
-          location.reload();
-        }
-      })
-      .onDeny(_ => { });
   }
 
 }

@@ -31,7 +31,7 @@
           <div class="text">Select Job</div>
           <i class="dropdown icon"></i>
           <div class="menu" suiDropdownMenu>
-            <div class="item" *ngFor="let job of jobList" (click)="changeCurrentJob(job.id)">{{ job.title }}</div>
+            <div class="item" *ngFor="let jobId of jobs.keys()" (click)="changeCurrentJob(jobId)">{{ jobs.getValue(jobId).title }}</div>
           </div>
         </div>
       </div>

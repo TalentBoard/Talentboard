@@ -14,8 +14,8 @@
   </div>
 
   <div class="job-column">
-    <app-applicant *ngFor="let applicant of applicants" [applicant]="applicant" dnd-draggable [dragEnabled]="true"
-      [dragData]="applicant" (onDragSuccess)="removeItem($event)"></app-applicant>
+    <app-applicant *ngFor="let applicantId of applicants.keys()" [applicant]="applicants.getValue(applicantId)" dnd-draggable [dragEnabled]="true"
+      [dragData]="applicants.getValue(applicantId)" (onDragSuccess)="removeItem($event)"></app-applicant>
   </div>
 </div>
 

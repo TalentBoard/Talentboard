@@ -1,55 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, Component, OnChanges, OnInit} from '@angular/core';
 import { Job } from '../model/Job';
 import { Applicant } from '../model/Applicant';
 import { JobService } from '../core/job.service';
 import { UserService } from '../core/user.service';
 import { ApplicantService } from '../core/applicant.service';
 import { User } from '../model/User';
+import * as Collections from 'typescript-collections';
 
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.scss']
 })
-export class JobComponent implements OnInit {
+export class JobComponent implements AfterContentInit {
 
   currentUser: User;
   currentJob: Job = new Job();
 
-  jobList: Array<Job> = [];
-  applied: Array<Applicant> = [];
-  phoneInterview: Array<Applicant> = [];
-  personInterview: Array<Applicant> = [];
-  declined: Array<Applicant> = [];
-  offer: Array<Applicant> = [];
+  jobs = new Collections.Dictionary<String, Job>();
+  applied = new Collections.Dictionary<String, Applicant>();
+  phoneInterview = new Collections.Dictionary<String, Applicant>();
+  personInterview = new Collections.Dictionary<String, Applicant>();
+  declined = new Collections.Dictionary<String, Applicant>();
+  offer = new Collections.Dictionary<String, Applicant>();
 
   toggleJobModal = false;
-
-  static containsApplicant(applicant, applicants) {
-    let i;
-    for (i = 0; i < applicants.length; i++) {
-        if (applicants[i].id === applicant.id) {
-            return true;
-        }
-    }
-    return false;
-  }
 
   constructor(private jobService: JobService,
     private userService: UserService,
     private applicantService: ApplicantService) { }
 
-  ngOnInit() {
+  ngAfterContentInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+
     if (this.currentUser.jobIds) {
-      for (const jobId of this.currentUser.jobIds) {
-        this.jobService.getJobById(jobId).subscribe(updatedJob => {
-          this.jobList.push(updatedJob);
-        });
-      }
+      this.fetchAllJobs();
     }
+
     if (this.currentUser.currentJobView) {
       this.fetchAllApplicants();
+    }
+  }
+
+  fetchAllJobs() {
+    this.clearAllJobs();
+    for (const jobId of this.currentUser.jobIds) {
+      this.jobService.getJobById(jobId).subscribe(updatedJob => {
+        this.jobs.setValue(updatedJob.id, updatedJob);
+      });
     }
   }
 
@@ -62,29 +60,19 @@ export class JobComponent implements OnInit {
           this.applicantService.getApplicantById(applicantId).subscribe(currentApplicant => {
             switch (currentApplicant.status) {
               case ('Applied'):
-                if (!JobComponent.containsApplicant(currentApplicant, this.applied)) {
-                  this.applied.push(currentApplicant);
-                }
+                this.applied.setValue(currentApplicant.id, currentApplicant);
                 break;
               case ('Phone Interview'):
-                if (!JobComponent.containsApplicant(currentApplicant, this.phoneInterview)) {
-                  this.phoneInterview.push(currentApplicant);
-                }
+                this.phoneInterview.setValue(currentApplicant.id, currentApplicant);
                 break;
               case ('In Person Interview'):
-                if (!JobComponent.containsApplicant(currentApplicant, this.personInterview)) {
-                  this.personInterview.push(currentApplicant);
-                }
+                this.personInterview.setValue(currentApplicant.id, currentApplicant);
                 break;
               case ('Declined'):
-                if (!JobComponent.containsApplicant(currentApplicant, this.declined)) {
-                  this.declined.push(currentApplicant);
-                }
+                this.declined.setValue(currentApplicant.id, currentApplicant);
                 break;
               case ('Sent Offer'):
-                if (!JobComponent.containsApplicant(currentApplicant, this.offer)) {
-                  this.offer.push(currentApplicant);
-                }
+                this.offer.setValue(currentApplicant.id, currentApplicant);
                 break;
             }
           });
@@ -94,26 +82,22 @@ export class JobComponent implements OnInit {
   }
 
   clearAllApplicants() {
-    this.applied = [];
-    this.phoneInterview = [];
-    this.personInterview = [];
-    this.declined = [];
-    this.offer = [];
+    this.applied = new Collections.Dictionary<String, Applicant>();
+    this.phoneInterview = new Collections.Dictionary<String, Applicant>();
+    this.personInterview = new Collections.Dictionary<String, Applicant>();
+    this.declined = new Collections.Dictionary<String, Applicant>();
+    this.offer = new Collections.Dictionary<String, Applicant>();
   }
 
   clearAllJobs() {
-    this.jobList = [];
+    this.jobs = new Collections.Dictionary<String, Job>();
   }
 
   changeCurrentJob(id: string) {
-    const job = this.jobList.find((value) => {
-      return value.id === id;
-    });
-    this.currentJob = job;
-    this.currentUser.currentJobView = job.id;
+    this.currentJob = this.jobs.getValue(id);
+    this.currentUser.currentJobView = id;
     this.userService.updateUser(this.currentUser.id, this.currentUser);
     localStorage.setItem('user', JSON.stringify(this.currentUser));
-    console.log(this.jobList);
     this.fetchAllApplicants();
   }
 

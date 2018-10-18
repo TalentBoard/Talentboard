@@ -1,9 +1,10 @@
-import {Component, OnInit, Input, ViewChild, SimpleChanges, OnChanges} from '@angular/core';
+import {Component, Input, ViewChild, SimpleChanges, OnChanges} from '@angular/core';
 import { Applicant } from '../model/Applicant';
 import { User } from '../model/User';
 import { SuiModalService, ModalTemplate, TemplateModalConfig } from '../../../node_modules/ng2-semantic-ui';
 import { ApplicantService } from '../core/applicant.service';
-import { UserService } from '../core/user.service';
+import * as Collections from 'typescript-collections';
+import {Job} from '../model/Job';
 
 export interface IContext {
   title: string;
@@ -18,7 +19,7 @@ export interface IContext {
 export class ColumnComponent implements OnChanges {
 
   @Input() name: string;
-  @Input() applicants: Array<Applicant> = [];
+  @Input() applicants: Collections.Dictionary<String, Applicant> = new Collections.Dictionary<String, Applicant>();
 
   applicant: Applicant;
   currentUser: User;
@@ -36,18 +37,19 @@ export class ColumnComponent implements OnChanges {
 
   removeItem(e: any) {
     const applicant: Applicant = e.dragData;
-    const index = this.applicants.map((value: Applicant) => {
-      return value.id;
-    }).indexOf(applicant.id);
-    if (index !== -1) {
-      this.applicants.splice(index, 1);
-    }
+    this.applicants.remove(applicant.id);
+    // const index = this.applicants.map((value: Applicant) => {
+    //   return value.id;
+    // }).indexOf(applicant.id);
+    // if (index !== -1) {
+    //   this.applicants.splice(index, 1);
+    // }
   }
 
   addItem(e: any) {
     const applicant: Applicant = e.dragData;
     if (applicant.status === this.name) {
-      this.applicants.push(applicant);
+      this.applicants.setValue(applicant.id, applicant);
     } else {
       applicant.status = this.name;
       this.applicantService.updateApplicant(applicant.id, applicant);
@@ -55,9 +57,9 @@ export class ColumnComponent implements OnChanges {
   }
 
   sortItems() {
-    this.applicants.sort((a: Applicant, b: Applicant) => {
-      return a.name.localeCompare(b.name);
-    });
+    // this.applicants.sort((a: Applicant, b: Applicant) => {
+    //   return a.name.localeCompare(b.name);
+    // });
   }
 
   openAddApplicantModal(title: string, applicant: Applicant) {

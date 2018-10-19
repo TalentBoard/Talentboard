@@ -20,6 +20,7 @@ activemq-data/
 classes/
 /build
 build/
+dist/
 buildSrc/build
 /spring-*/build
 /src/asciidoc/build
@@ -42,3 +43,4 @@ atlassian-ide-plugin.xml
 .firebaserc
 firebase.json
 .firebase
+node_modules

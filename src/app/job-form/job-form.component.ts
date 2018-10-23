@@ -19,6 +19,7 @@ export interface IContext {
 export class JobFormComponent implements OnInit {
 
   currentUser: User;
+  step = 1;
   locations = [
     'Calgary, AB',
     'Halifax, NS',
@@ -56,10 +57,19 @@ export class JobFormComponent implements OnInit {
     });
   }
 
+  nextStep() {
+    this.step++;
+  }
+
+  backStep() {
+    this.step--;
+
+  }
+
   openJobModal(title: string, job: Job) {
     const config = new TemplateModalConfig<IContext, void, void>(this.jobModal);
     config.isClosable = false;
-    config.size = 'small';
+    config.size = 'large';
     config.transition = 'fade up';
     config.transitionDuration = 400;
     config.context = {title: title, job: job};

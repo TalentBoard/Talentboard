@@ -44,3 +44,4 @@ atlassian-ide-plugin.xml
 firebase.json
 .firebase
 node_modules
+config.js

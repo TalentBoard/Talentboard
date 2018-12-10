@@ -12,6 +12,8 @@ import { ToastrService } from '../../../node_modules/ngx-toastr';
 })
 export class LoginComponent {
 
+  show_login = false;
+
   credentials = {
     email: '',
     password: ''
@@ -54,8 +56,8 @@ export class LoginComponent {
       const userId = res.user.uid;
       this.userService.getUserById(userId).subscribe(user => {
         if (!user.jobIds) {
-            user.jobIds = []; // temp fix because firebase doesn't store empty lists
-          }
+          user.jobIds = []; // temp fix because firebase doesn't store empty lists
+        }
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/app']);
       });

@@ -1,4 +1,4 @@
-<div *ngIf="!show_login;" class="ui container">
+<div *ngIf="!show_login;else login" class="ui container">
     <h1 class="ui center aligned header" style="margin: 5vh">
         Applicant tracking tool for HR and hiring managers
     </h1>
@@ -19,32 +19,35 @@
     </div>
 </div>
 
-<div *ngIf="show_login;" class="ui container" id="container-log-in">
-    <img class="ui centered medium image" src="../../assets/images/logo-black-variant.svg">
-    <div class="ui basic segment">
-        <div class="content">
-            <form class="ui form" (ngSubmit)="emailLogin()">
-                <div class="ui left icon input fluid">
-                    <input type="email" [(ngModel)]="credentials.email" placeholder="Email address" name="email">
-                    <i class="user icon"></i>
+<ng-template #login>
+    <div class="ui container" id="container-log-in">
+        <img class="ui centered medium image" src="../../assets/images/logo-black-variant.svg">
+        <div class="ui basic segment">
+            <div class="content">
+                <form class="ui form" (ngSubmit)="emailLogin()">
+                    <div class="ui left icon input fluid">
+                        <input type="email" [(ngModel)]="credentials.email" placeholder="Email address" name="email">
+                        <i class="user icon"></i>
+                    </div>
+                    <div class="ui left icon input fluid" id="input-login">
+                        <input type="password" [(ngModel)]="credentials.password" placeholder="Password" name="password">
+                        <i class="lock icon"></i>
+                    </div>
+                    <button type="submit" class="ui fluid button instagram button-login">Login</button>
+                </form>
+                <div class="ui horizontal divider">
+                    Or
                 </div>
-                <div class="ui left icon input fluid" id="input-login">
-                    <input type="password" [(ngModel)]="credentials.password" placeholder="Password" name="password">
-                    <i class="lock icon"></i>
-                </div>
-                <button type="submit" class="ui fluid button instagram button-login">Login</button>
-            </form>
-            <div class="ui horizontal divider">
-                Or
             </div>
+            <button type="button" class="ui fluid black button" (click)="googleLogin()" id="log-in-service">
+                <i class="google icon"></i>
+                Login with Gmail
+            </button>
         </div>
-        <button type="button" class="ui fluid black button" (click)="googleLogin()" id="log-in-service">
-            <i class="google icon"></i>
-            Login with Gmail
-        </button>
+        <div class="ui basic segment center aligned">
+            New to Talentboard?
+            <a routerLink="/register" routerLinkActive="active">Create an account</a>.
+        </div>
     </div>
-    <div class="ui basic segment center aligned">
-        New to Talentboard?
-        <a routerLink="/register" routerLinkActive="active">Create an account</a>.
-    </div>
-</div>
+</ng-template>
+

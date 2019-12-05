@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../model/Applicant';
 import { ApplicantService } from '../core/applicant.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-temp-apply',
@@ -24,7 +25,7 @@ export class TempApplyComponent implements OnInit {
   }
 
   uploadResume(event) {
-    const id = Math.random().toString(36).substring(2);
+    const id = uuid.v4();
     this.refResume = this.afStorage.ref(id);
     this.taskResume = this.refResume.put(event.target.files[0]);
     this.taskResume.then( res => {
@@ -35,7 +36,7 @@ export class TempApplyComponent implements OnInit {
   }
 
   uploadCoverLetter(event) {
-    const id = Math.random().toString(36).substring(2);
+    const id = uuid.v4();
     this.refCoverLetter = this.afStorage.ref(id);
     this.taskCoverLetter = this.refCoverLetter.put(event.target.files[0]);
     this.taskCoverLetter.then( res => {
